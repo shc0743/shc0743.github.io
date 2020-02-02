@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html contenteditable="false">
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>好多东西</title>
+<script>
+function bodyload(){
+document.getElementById('passwordoutputexevartxtw3schoolfindprompt').style.display='none';
+let user = localStorage.getItem('loadusername');
+if(user == "" || user == null){
+} else {
+document.getElementById('zcload').style.display='none'
+document.getElementById('xiaouser').style.display='block'
+}
+let beta = localStorage.getItem('betaonoff');
+if(beta == "on"){
+//如果beta是on那么执行显示beta内容
+blockbeta()
+}
+}
+</script>
+    </head>
+    <body onload="bodyload()" ononline="alert('您已上线!')" onoffline="alert('您已离线!')">
+
+<p>--------</p>
+<p>好多东西</p>
+<p>--------</p>
+<p id="nowtimeout">
+<input type="button" value="获取时间" onclick="nowtimeget()"><br>
+点<button onclick="starttime()">我</button>来启动<select id="twselect">
+  <option value ="nochoose" selected="selected">请选择</option>
+  <option value ="st">节能</option>
+  <option value ="nd">正常</option>
+  <option value="rd">高速</option>
+  <option value="th">抢卷专用</option>
+</select>时间流逝程序
+</p>
+
+<script>
+function nowtimeget(){
+var d = new Date();
+var days = ["明天要上学!","期待周末!","期待周末!","期待周末!","周末快到了!","周末快到了!","今天是周末!"];
+document.getElementById("nowtimeout").innerHTML = days[d.getDay()];
+}
+var tout = 0
+function restarttime(){
+document.getElementById("nowtimeout").innerHTML = '<input type="button" value="获取时间" onclick="nowtimeget()"><br>点<button onclick="starttime()">我</button>来启动<select id="twselect">  <option value ="nochoose" selected="selected">请选择</option>  <option value ="st">节能</option>  <option value ="nd">正常</option>  <option value="rd">高速</option>  <option value="th">抢卷专用</option></select>时间流逝程序'
+}
+function starttime(){
+if(twselect.value == "nochoose"){
+alert("请选择!")
+return false;
+} else if(twselect.value == "st"){
+tout = 3000
+} else if(twselect.value == "nd"){
+tout = 1000
+} else if(twselect.value == "rd"){
+tout = 200
+} else if(twselect.value == "th"){
+tout = 1
+}
+timewater()
+}
+function timewater(){
+var d = new Date()
+y = String(d.getFullYear())
+m = String(d.getMonth() + 1)
+//day = d.getDate()
+h = String(d.getHours())
+if(h.length == 1){
+h = "0" + String(h)
+}
+min = String(d.getMinutes())
+if(min.length == 1){
+min = "0" + String(min)
+}
+s = String(d.getSeconds())
+if(s.length == 1){
+s = "0" + String(s)
+}
+week = String(d.getDay())
+var days = ["明天要上学!","期待周末!","期待周末!","期待周末!","周末快到了!","周末快到了!","今天是周末!"];
+days = days[week]
+if(week == "0"){
+week = "天"
+}
+tim = "<p onclick='stoptw()'>现在是" + y + "年" + m + "月" + h + ":" + min + ":" + s + "星期" + week + "<br>点击即可停止时间流逝程序" + "<br>" + days + "</p>"
+document.getElementById("nowtimeout").innerHTML = tim;
+timew = setTimeout(timewater,tout)
+}
+function stoptw(){
+clearTimeout(timew)
+document.getElementById("nowtimeout").innerHTML = "时间流逝程序已停止<br>点<button onclick='restarttime()'>我</button>即可重新开始</a>";
+}
+</script>
+<p>--------</p>
+<!--我是分界线-->
+
+<p id="passwordoutputexevartxtw3schoolfindprompt"></p>
+<p id="noload">您还未登录<br />不是完整版<br />功能受限</p>
+<input type="button" id="load" onclick="passwordifthenelse()" value="登录" /> 
+<p id="loadyz" style="display:none">
+登录验证:请输入验证码<input type="text" id="inloadyz">
+<input type="button" onclick="loadyzisnow()" value="确定"><br>
+验证码是<input type="text" id="outloadyz" value="点我获取验证码" onclick="hqloadyzm()" readonly='readonly'>
+</p>
+<p id="loadyz2" style="display:none">
+登录验证:请输入验证码<input type="text" id="inloadyz2">
+<input type="button" onclick="loadyzisnow2()" value="确定"><br>
+验证码是<input type="text" id="outloadyz2" value="点我获取验证码" onclick="hqloadyzm2()" readonly='readonly'>
+</p>
+<input type="button" id="zcload" onclick="zhucheload()" value="注册" />
+<button onclick="location.reload()">刷新/注销</button>
+<p id="zcloadarea" style="display:none">
+<input type="text" placeholder="设置账号" id="setusername"><br>
+<input type="password" placeholder="设置密码" id="setpassword"><br>
+<input type="email" placeholder="您的电子邮件" id="setemail"><br>
+<button id="zhuchesub" onclick="zhuchesub()">确定</button>
+</p>
+<form action="MAILTO:18907436033@189.cn" method="post" enctype="text/plain" style="display:none" id="mailzcyzm">
+<input type="hidden" id="emailzcyzm" name="yanzhengma">
+<input type="submit" id="subzcyzm">
+</form>
+<p id="zcyzmarea" style="display:none">
+请输入验证码<input type="text" id="zcyzm">
+<input type="button" onclick="ifzcyzm()" value="提交">
+</p>
+<input type="button" id="xiaouser" style="display:none" onclick="xiaouser()" disabled="disabled" value="永久注销账号">
+<!--<input type="button" id="clear2" onclick="admindeleteupload()" value="删除此元素" disabled="disabled" />-->
+
+<p>--------</p>
+
+<script>
+errornumber = 0
+function truefalsenoload(){
+  if (confirm("真的不需要登录吗?")) {
+document.getElementById('passwordoutputexevartxtw3schoolfindprompt').style.display='none'
+document.getElementById('noload').style.display='block'
+document.getElementById('load').style.display='block'
+  } else {
+    passwordifthenelse()
+  }
+}
+function passwordifthenelse(){
+var loadtxtuser = "[抱歉，程序出现了bug]"
+let gkey = sessionStorage.getItem('gkey');
+let username = localStorage.getItem('loadusername');
+let password = localStorage.getItem('loadpassword');
+  loadperson = prompt("登录\n请输入密码", "");
+  if (loadperson == "123456" || loadperson === "user" || loadperson === gkey || loadperson === password) {
+ if (loadperson == "123456") {
+loadtxtuser = "管理员";
+try{
+blockbeta()
+}
+catch(err){
+alert(err)
+}
+} else if (loadperson == "user") {
+loadtxtuser = "用户"
+} else if (loadperson === gkey) {
+if(gkey == null || gkey == ""){
+truefalsenoload()
+return false;
+} else {
+document.getElementById('loadyz2').style.display='block'
+alert("请输入验证码")
+//loadtxtuser = "公钥用户"
+return false
+}
+} else if (loadperson === password) {
+if(password == null || password == ""){
+truefalsenoload()
+return false;
+} else {
+document.getElementById("loadyz").style.display="block";
+alert("请输入验证码")
+return true
+loadtxtuser = username
+document.getElementById('xiaouser').disabled=false;
+}
+} else {
+loadtxtuser = "[抱歉，程序出现了bug]"
+}
+    loadtxt = "你好," + loadtxtuser + "!今天过得好吗？";
+alert("欢迎!")
+document.getElementById('zcload').style.display='none'
+document.getElementById('passwordoutputexevartxtw3schoolfindprompt').style.display='block'
+document.getElementById('noload').style.display='none'
+document.getElementById('load').style.display='none'
+document.getElementById('button13').disabled=false
+document.getElementById('button14').disabled=false
+document.getElementById('num1').disabled=false
+document.getElementById('num2').disabled=false
+document.getElementById('moreset').disabled=false
+  } else if (loadperson == "" || loadperson == null) {
+truefalsenoload()
+  } else {
+errornumber = errornumber + 1
+if (errornumber == 3) {
+a = 0
+while(a<100){
+a = a + 1
+b = 100-a
+alert("错误次数超过3次，程序锁定!\n除非你有恒心，再按" + 
+b + "次!")
+}
+}
+if (confirm("密码错误!\n是否重试?")) {
+passwordifthenelse()
+ } else {
+truefalsenoload()
+}
+}
+
+document.getElementById("passwordoutputexevartxtw3schoolfindprompt").innerHTML = loadtxt;
+}
+function afterloadcz(){ //在登录之后做的
+    loadtxt = "你好," + loadtxtuser + "!今天过得好吗？";
+alert("欢迎!")
+document.getElementById('passwordoutputexevartxtw3schoolfindprompt').style.display='block'
+document.getElementById('zcload').style.display='none'
+document.getElementById('noload').style.display='none'
+document.getElementById('load').style.display='none'
+document.getElementById('button13').disabled=false
+document.getElementById('button14').disabled=false
+document.getElementById('num1').disabled=false
+document.getElementById('num2').disabled=false
+document.getElementById('moreset').disabled=false
+document.getElementById("passwordoutputexevartxtw3schoolfindprompt").innerHTML = loadtxt;
+}
+
+function admindeleteupload(){
+//隐藏登录元素
+document.getElementById("passwordoutputexevartxtw3schoolfindprompt").style.display="none";
+document.getElementById("noload").style.display="none";
+document.getElementById("load").style.display="none";
+document.getElementById('clear2').style.display="none";
+document.getElementById("zcload").style.display="none";
+document.getElementById("setusername").style.display="none";
+document.getElementById('zhuchesub').style.display="none";
+document.getElementById("setpassword").style.display="none";
+}
+
+function zhucheload(){
+document.getElementById('zcloadarea').style.display='block'
+}
+function zhuchesub(){
+username = document.getElementById('setusername')
+password = document.getElementById('setpassword')
+var myemail = document.getElementById('setemail')
+if (username.value == ""){
+alert("您没有输入账号")
+return false
+} else if (password.value == ""){
+alert("您没有输入密码")
+return false
+} else if (password.value === "123456" || password.value === "user"){
+alert("密码不符合要求!")
+password.value=""
+password.focus()
+} else if (username.value === "管理员" || username.value === "用户" || username.value === "公钥用户"){
+alert("账号不符合要求!")
+username.value=""
+username.focus()
+} else if (myemail.value === "" || myemail.value === null){
+alert("请输入电子邮件!")
+myemail.focus()
+} else if (myemail.value.indexOf("@")==-1){
+alert("不是有效的电子邮件地址。")
+myemail.value=""
+myemail.focus()
+} else {
+alert("我们将给您的电子邮件发送验证码\n收到之后请输入验证码。")
+var zcyzm = document.getElementById('emailzcyzm')
+var formzcyzm = document.getElementById('mailzcyzm')
+formzcyzm.action = "MAILTO:" + myemail.value
+yzm = ""
+for(var i = 0;i < 6;i++){
+yzm+=Math.floor(Math.random()*10); 
+} 
+zcyzm.value = yzm
+var subzcyzm = document.getElementById('subzcyzm')
+subzcyzm.click()
+document.getElementById('zcloadarea').style.display='none'
+document.getElementById('zcyzmarea').style.display='block'
+/*
+//否则输入local
+localStorage.setItem('loadusername', username.value);
+localStorage.setItem('loadpassword', password.value);
+alert("注册成功!")
+location.reload()
+*/
+}
+}
+function ifzcyzm(){
+var zcyzm = document.getElementById('emailzcyzm')
+var yzm = document.getElementById('zcyzm')
+if(zcyzm.value === yzm.value){
+alert("验证码正确!")
+//否则输入local
+localStorage.setItem('loadusername', username.value);
+localStorage.setItem('loadpassword', password.value);
+alert("注册成功!")
+location.reload()
+} else {
+alert("验证码错误!")
+}
+}
+function xiaouser(){
+if(confirm("第1次确认\n真的要永久注销账号吗?\n您正在进行一个高危操作!")){
+if(confirm("第2次确认\n真的要永久注销账号吗?\n您正在进行一个高危操作!")){
+if(confirm("第3次确认\n真的要永久注销账号吗?\n您正在进行一个高危操作!")){
+localStorage.removeItem('loadusername');
+localStorage.removeItem('loadpassword');
+alert("注销成功!")
+location.reload()
+}
+}
+}
+}
+function hqloadyzm(){
+var yzm = ""
+for(var i = 0;i < 6;i++){
+yzm+=Math.floor(Math.random()*10); 
+} 
+document.getElementById('outloadyz').value=yzm
+//outloadyz是输出登录验证
+}
+function loadyzisnow(){
+inyz = document.getElementById('inloadyz')
+outyz = document.getElementById('outloadyz')
+if(outyz.value == "点我获取验证码"){
+alert("请点击下面的点我获取验证码来获取验证码")
+} else if (inyz.value === outyz.value){
+alert("验证码正确!\n点击确定即可继续")
+let username = localStorage.getItem('loadusername');
+let password = localStorage.getItem('loadpassword');
+document.getElementById("loadyz").style.display="none";
+loadtxtuser = username
+document.getElementById('xiaouser').disabled=false;
+    loadtxt = "你好," + loadtxtuser + "!今天过得好吗？";
+alert("欢迎!")
+document.getElementById('zcload').style.display='none'
+document.getElementById('passwordoutputexevartxtw3schoolfindprompt').style.display='block'
+document.getElementById('noload').style.display='none'
+document.getElementById('load').style.display='none'
+document.getElementById('button13').disabled=false
+document.getElementById('button14').disabled=false
+document.getElementById('num1').disabled=false
+document.getElementById('num2').disabled=false
+document.getElementById('moreset').disabled=false
+document.getElementById("passwordoutputexevartxtw3schoolfindprompt").innerHTML = loadtxt;
+} else {
+alert("验证码错误!")
+}
+}
+function hqloadyzm2(){
+var yzm = ""
+for(var i = 0;i < 8;i++){
+yzm+=Math.floor(Math.random()*10); 
+} 
+document.getElementById('outloadyz2').value=yzm
+//outloadyz是输出登录验证
+}
+function loadyzisnow2(){
+inyz = document.getElementById('inloadyz2')
+outyz = document.getElementById('outloadyz2')
+if(outyz.value == "点我获取验证码"){
+alert("请点击下面的点我获取验证码来获取验证码")
+} else if (inyz.value === outyz.value){
+alert("验证码正确!\n点击确定即可继续")
+loadtxtuser = "公钥用户"
+document.getElementById('loadyz2').style.display='none'
+afterloadcz()
+} else {
+alert("验证码错误!")
+}
+}
+</script>
+
+<!--我是分界线-->
+
+<script>
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+         }
+        if (c.indexOf(name)  == 0) {
+            return c.substring(name.length, c.length);
+         }
+    }
+    return "";
+}
+
+function checkCookie() {
+  var user=getCookie("username");
+  if (user != "") {
+    alert("再次欢迎您，" + user);
+  } else {
+     user = prompt("请输入姓名：","");
+     if (user != "" && user != null) {
+       setCookie("username", user, 30); document.getElementByld("username").innerhtml="欢迎您," + user;
+     }
+  }
+}
+function delcookie(){
+document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+alert("删除成功!")
+}
+
+function gkeyload(){
+if(confirm("确定吗\n使用公钥登录可能会导致意外的风险!")){
+if(confirm("单击确定，加载公钥\n单击取消，撤销操作\n温馨提示:公钥1分钟有效")){
+var gkey = ""
+for(var i = 0;i < 6;i++){
+gkey+=Math.floor(Math.random()*10); 
+} 
+document.getElementById('gkeyout').style.display='block'; document.getElementById('gkeyout').innerHTML="公钥是" + gkey ;
+window.sessionStorage.setItem('gkey',gkey);
+setTimeout(delgkey,60000);
+}
+}
+}
+function delgkey(){
+document.getElementById('gkeyout').innerHTML="公钥已过期<br>请重新获取"
+window.sessionStorage.removeItem('gkey')
+}
+</script>
+
+<p onclick="gkeyload()">使用公钥登录</p>
+<p id="gkeyout" style="display:none">您没有使用公钥</p>
+
+<!--
+<p>--------</p>
+<p onclick="checkCookie()" id="username">欢迎</p>
+<p onclick='delcookie()' id="delcookie">删除cookie</p>
+<input type="button" id="deletecookiearea" onclick="this.style.display='none'; document.getElementById('username').style.display='none'; 
+document.getElementById('delcookie').style.display='none';" disabled="disabled" value="删除此元素">-->
+
+<p>--------</p> 
+
+               <input type="text" name="time" placeholder="此处显示时间<单位=秒>" id="text" readonly>
+
+        <input type="button" name="start" value="开始" id="button1">
+
+        <input type="button" name="stop" value="此按钮无效" id="button2">
+       
+        <script type="text/javascript">
+            
+            //获取文本框、开始按钮和暂停按钮
+            var btn1=document.getElementById("button1"),
+
+                btn2=document.getElementById("button2"),
+
+                time=document.getElementById("text"),
+
+                num=0;
+            
+            //给开始按钮绑定鼠标点击事件
+            btn1.onclick=function btn1(){
+                
+                time.value=num;
+
+                num++;
+                
+                var timeoutid=setTimeout(btn1,1000);
+
+                  button1.value="加倍";
+
+                  button2.value="减倍";
+
+                //给暂停按钮绑定鼠标点击事件
+                btn2.onclick=function(){
+
+                    button1.value="继续";
+
+                    clearTimeout(timeoutid);
+
+                }
+                
+            }
+            
+        </script>
+
+<p>--------</p>
+
+               <input type="text" name="time" placeholder="此处显示时间<单位=分钟>" id="text2" readonly>
+
+        <input type="button" name="start" value="开始" id="button12">
+
+        <input type="button" name="stop" value="此按钮无效" id="button22">
+       
+        <script type="text/javascript">
+            
+            //获取文本框、开始按钮和暂停按钮
+            var btn12=document.getElementById("button12"),
+
+                btn22=document.getElementById("button22"),
+
+                time2=document.getElementById("text2"),
+
+                num=0;
+            
+            //给开始按钮绑定鼠标点击事件
+            btn12.onclick=function btn12(){
+                
+                time2.value=num;
+
+                num++;
+                
+                var timeoutid=setTimeout(btn12,60000);
+
+                  button12.value="加倍";
+
+                  button22.value="减倍";
+
+                //给暂停按钮绑定鼠标点击事件
+                btn22.onclick=function(){
+
+                    button12.value="继续";
+
+                    clearTimeout(timeoutid);
+
+                }
+                
+            }
+            
+        </script>
+
+       <p>--------</p>
+
+               <input type="text" name="time" placeholder="此处显示时间<单位=小时>" id="text3" readonly>
+
+        <input type="button" name="start" value="开始" id="button13" disabled='disabled'>
+
+        <input type="button" name="stop" value="此按钮无效" id="button23">
+       
+        <script type="text/javascript">
+            
+            //获取文本框、开始按钮和暂停按钮
+            var btn13=document.getElementById("button13"),
+
+                btn23=document.getElementById("button23"),
+
+                time3=document.getElementById("text3"),
+
+                num=0;
+            
+            //给开始按钮绑定鼠标点击事件
+            btn13.onclick=function btn13(){
+                
+                time3.value=num;
+
+                num++;
+                
+                var timeoutid=setTimeout(btn13,3600000);
+
+                  button13.value="加倍";
+
+                  button23.value="减倍";
+
+                //给暂停按钮绑定鼠标点击事件
+                btn23.onclick=function(){
+
+                    button13.value="继续";
+
+                    clearTimeout(timeoutid);
+
+                }
+                
+            }
+            
+        </script>
+
+<p>--------</p>
+
+               <input type="text" name="time" placeholder="此处显示时间<单位=ms>" id="text4" readonly>
+
+        <input type="button" name="start" value="开始" id="button14" disabled='disabled'>
+
+        <input type="button" name="stop" value="此按钮无效" id="button24">
+       
+        <script type="text/javascript">
+            
+            //获取文本框、开始按钮和暂停按钮
+            var btn14=document.getElementById("button14"),
+
+                btn24=document.getElementById("button24"),
+
+                time4=document.getElementById("text4"),
+
+                num=0;
+            
+            //给开始按钮绑定鼠标点击事件
+            btn14.onclick=function btn14(){
+                
+                time4.value=num;
+
+                num = num+10;
+                
+                var timeoutid=setTimeout(btn14,1);
+
+                  button14.value="加倍";
+
+                  button24.value="减倍";
+
+                //给暂停按钮绑定鼠标点击事件
+                btn24.onclick=function(){
+
+                    button14.value="继续";
+
+                    clearTimeout(timeoutid);
+
+                }
+                
+            }
+            
+        </script>
+
+<p>
+--------
+</p><p id="timewxts">
+温馨提示:请不要同时运行N个计时程序，否则后果自负!!!
+</p><p>
+--------
+</p><!--
+<input type="button" id="admindeletetime" onclick="admindeletetime()" value="删除此元素" disabled="disabled">
+<input type="button" id="delall" onclick="delall()" value="删除所有元素" disabled="disabled">-->
+<script>
+function admindeletetime(){
+document.getElementById("text").style.display="none";
+document.getElementById("text2").style.display="none";
+document.getElementById("text3").style.display="none";
+document.getElementById("text4").style.display="none";
+document.getElementById("button1").style.display="none";
+document.getElementById("button2").style.display="none";
+document.getElementById("button12").style.display="none";
+document.getElementById("button22").style.display="none";
+document.getElementById("button13").style.display="none";
+document.getElementById("button23").style.display="none";
+document.getElementById("button14").style.display="none";
+document.getElementById("button24").style.display="none"
+document.getElementById("timewxts").style.display="none"
+document.getElementById("admindeletetime").style.display="none"
+}
+function delall(){
+document.write("")
+}
+</script>
+
+<!--我是分界线-->
+
+<script>
+<!--
+
+//-->
+</script>
+
+<noscript>你的浏览器无法使用此网页,请按以下步骤检测。
+<br>
+1.您的浏览器是否太老了?
+<br>
+2.您的浏览器是否禁用了JS脚本?
+<br>
+3.若无法解决,请联系2289302629@qq.com
+</noscript>
+
+<!--我是分界线-->
+
+
+
+<!--我是分界线-->
+
+<p>
+计算器</p>
+<p>
+
+<input type="text" id="num1" placeholder="数字1" pattern="number" onblur="submitcalc()" disabled="disabled">
+<input type="button" id="ac" value="AC"> 
+<br />
+
+<input type="button" id="add" value="加">
+<input type="button" id="noadd" value="减">
+<input type="button" id="aadd" value="乘">
+<input type="button" id="noaadd" value="除">
+<input type="button" id="aaadd" value="^"> 
+<br />
+
+<input type="text" id="num2" placeholder="数字2" pattern="number" onblur="submitcalc()" disabled="disabled">
+
+<input type="button" id="moreset" value="更多设置" disabled="disabled"> 
+<input type="button" id="nodispout" style="display:none" value="隐藏输出" onclick="document.getElementById('out').style.display='none'">
+<input type="button" id="dispout" style="display:none" value="显示输出" onclick="document.getElementById('out').style.display='block'">
+
+<p>计算结果</p>
+<p id="out">您还未开始计算!</p>
+
+<script>
+//数据处理区
+try{
+function submitcalc(){
+var num1 = parseFloat(document.getElementById("num1").value)
+var num2 = parseFloat(document.getElementById("num2").value)
+}
+add.onclick = function add(){
+var num1 = parseFloat(document.getElementById("num1").value)
+var num2 = parseFloat(document.getElementById("num2").value)
+ document.getElementById("out").innerHTML = ((num1*
+1000)+ (num2*1000))/1000 ;
+}
+noadd.onclick = function noadd(){
+var num1 = parseFloat(document.getElementById("num1").value)
+var num2 = parseFloat(document.getElementById("num2").value)
+ document.getElementById("out").innerHTML = ((num1*
+1000) - (num2*1000))/1000;
+}
+aadd.onclick = function aadd(){
+var num1 = parseFloat(document.getElementById("num1").value)
+var num2 = parseFloat(document.getElementById("num2").value)
+ document.getElementById("out").innerHTML = (num1*
+1000 * num2*1000)/1000;
+}
+noaadd.onclick = function noaadd(){
+var num1 = parseFloat(document.getElementById("num1").value)
+var num2 = parseFloat(document.getElementById("num2").value)
+ document.getElementById("out").innerHTML = (num1*
+1000) / (num2*1000)/1000;
+}
+aaadd.onclick = function aaadd(){
+var num1 = parseFloat(document.getElementById("num1").value)
+var num2 = parseFloat(document.getElementById("num2").value)
+ document.getElementById("out").innerHTML = num1 **
+ num2;
+}
+ac.onclick=function ac(){
+var num1=0
+var num2=0
+document.getElementById("num1").value=""
+document.getElementById("num2").value=""
+document.getElementById("out").innerHTML = "您还未开始计算!"
+}
+
+//我是分界线
+//启用更多设置
+moreset.onclick=function moreset(){
+document.getElementById('nodispout').style.display='block'
+document.getElementById('dispout').style.display='block'
+document.getElementById('moreset').style.display='none'
+}
+}
+catch(err){
+document.getElementById("out").innerHTML = "非常抱歉，程序出现了bug!<input type='button' value='反馈错误' onclick='cslcer()'>"
+document.getElementByld("calce").value = err
+function cslcer(){
+document.getElementByld("calcesub").click()
+}
+}
+</script>
+
+<form action="MAILTO:18907436033@163.com?subject=ErrorSend" method="post" enctype="text/plain" style="display:none">
+<textarea id="calce" name="err"></textarea>
+<input type="submit" id="calcesub">
+</form>
+
+</p>
+
+<p>
+--------
+<p id="rstarea">
+<a onclick="document.getElementById('clearall').style.display='block'">还原</a><br>
+<input type="button" onclick="resetall()" value="抹掉所有内容和设置" style="display:none" id="clearall">
+<p id="resetyz" style="display:none">
+请输入验证码<input type="text" id="inrstyz">
+<input type="button" onclick="rstyzm()" value="确定"><br>
+验证码是<input type="text" id="outrstyz" value="点我获取验证码" onclick="hqrstyzm()" readonly='readonly'>
+</p>
+</p>
+<script>
+function daojishirstyzm(){
+document.getElementById('rstyzm').value="同意(5)"
+document.getElementById('rstyzm').disabled="disabled"
+setTimeout(djsrstyzm4,1000)
+}
+function djsrstyzm4(){
+document.getElementById('rstyzm').value="同意(4)"
+setTimeout(djsrstyzm3,1000)
+}
+function djsrstyzm3(){
+document.getElementById('rstyzm').value="同意(3)"
+setTimeout(djsrstyzm2,1000)
+}
+function djsrstyzm2(){
+document.getElementById('rstyzm').value="同意(2)"
+setTimeout(djsrstyzm1,1000)
+}
+function djsrstyzm1(){
+document.getElementById('rstyzm').value="同意(1)"
+setTimeout(djsrstyzm0,1000)
+}
+function djsrstyzm0(){
+document.getElementById('rstyzm').value="同意"
+document.getElementById('rstyzm').disabled=false;
+setTimeout(disabledrstyzm,10000)
+}
+function disabledrstyzm(){
+document.getElementById('rstyzm').value="10秒不同意,同意按钮自动失效!"
+document.getElementById('rstyzm').disabled="disabled"
+}
+</script>
+<p id="highalert" style="display:none">
+<centre>警告!</centre><br>
+此操作将会清除所有数据!此操作不可恢复!<br>此操作将会清除所有数据!此操作不可恢复!<br>此操作将会清除所有数据!此操作不可恢复!<br>此操作将会清除所有数据!此操作不可恢复!<br>此操作将会清除所有数据!此操作不可恢复!<br>此操作将会清除所有数据!此操作不可恢复!<br>此操作将会清除所有数据!此操作不可恢复!<br>此操作将会清除所有数据!此操作不可恢复!<br>此操作将会清除所有数据!此操作不可恢复!<br>此操作将会清除所有数据!此操作不可恢复!<br>
+<button onclick="location.reload()">拒绝</button>
+<input type="button" id="rstyzm" onclick="rstyzmok()" disabled="disabled" value="同意(5)" />
+</p>
+
+<script>
+function resetall(){
+if(prompt("请输入最高管理员权限密码")==="123456"){
+alert("请输入验证码")
+document.getElementById('resetyz').style.display='block'
+} else {
+alert("密码错误!")
+}
+}
+</script><script>
+var cishu = 0
+function rstyzm(){
+try{
+inyz = document.getElementById('inrstyz')
+outyz = document.getElementById('outrstyz')
+if(outyz.value == "点我获取验证码"){
+alert("请点击下面的点我获取验证码来获取验证码")
+inyz.value=""
+hqrstyzm()
+inyz.focus()
+} else if (inyz.value === outyz.value){
+alert("验证码正确!\n点击确定即可继续")
+if(confirm("第1次确认\n真的要操作吗?\n您正在进行一个SSS级操作!")){
+if(confirm("第2次确认\n真的要操作吗?\n您正在进行一个SSS级操作!")){
+if(confirm("第3次确认\n真的要操作吗?\n您正在进行一个SSS级操作!")){
+alert("请阅读高危协议!")
+document.getElementById('highalert').style.display='block';
+daojishirstyzm()
+/*
+localStorage.clear();
+sessionStorage.clear();
+alert("操作成功!")
+location.reload()
+*/
+}
+}
+}
+} else {
+alert("验证码错误!")
+hqrstyzm()
+inyz.value=""
+inyz.focus()
+}
+}
+catch(err){
+alert(err)
+}
+}
+function rstallnow(){
+if(confirm("第1次确认\n真的要操作吗?\n您正在进行一个SSS级操作!")){
+if(confirm("第2次确认\n真的要操作吗?\n您正在进行一个SSS级操作!")){
+if(confirm("第3次确认\n真的要操作吗?\n您正在进行一个SSS级操作!")){
+alert("请阅读高危协议!")
+document.getElementById('highalert').style.display='block';
+daojishirstyzm()
+}
+</script><script>
+function hqrstyzm(){
+var yzm = ""
+for(var i = 0;i < 10;i++){
+yzm+=Math.floor(Math.random()*10); 
+} 
+document.getElementById('outrstyz').value=yzm
+//outrstyz是输出重置验证
+}
+function rstyzmok(){
+localStorage.clear();
+sessionStorage.clear();
+alert("操作成功!")
+location.reload()
+}
+</script>
+<p>--------</p>
+</p>
+
+<!--我是分界线-->
+
+<a href="开发者调试工具.htm" style="color:black;text-decoration:none">开发者工具</a>
+<p>--------</p>
+
+<!--我是分界线-->
+
+<p id="goodplaythings">
+好玩的东西
+<p id="goodplay001" onclick="this.style.color = goodplay002.value">这行文字很神奇，因为点一下就可以变成<input type="color" id="goodplay002" placeholder="输入颜色"> </p>
+</p>
+<p>--------</p>
+
+<script>
+</script>
+
+<!--我是分界线-->
+
+<script>
+function openbeta(){
+if(betasw.value == 1){
+ if(confirm("真的要启动beta吗?")){
+blockbeta()
+localStorage.setItem('betaonoff', 'on');
+alert("操作成功!")
+ }
+}
+}
+function offbeta(){
+if(confirm("真的要停止测试吗?")){
+localStorage.removeItem('betaonoff');
+alert("操作成功!")
+location.reload()
+}
+}
+function blockbeta(){
+betapwarea.style.display="none"
+betaarea.style.display="block"
+stopbeta.style.display="block"
+beta01.style.display="block"
+}
+</script>
+
+<p id="betapwarea">
+启动beta?OFF<input type="range" id="betasw" step=1 min=0 max=1 value=0>ON <br>
+<input type="button" onclick="openbeta()" value="确定">
+</p>
+
+<p id="betaarea" style="display:none">
+
+<p id="stopbeta" style="color:red;display:none" onclick="offbeta()">停止测试</p>
+<p id="beta01" style="display:none">点<a href="验证码.htm">我</a>打开验证码<br>点<a href="质数检测器.htm">我</a>打开质数检测器</p>
+
+</p>
+
+<p>--------</p>
+
+<p>
+<form action="MAILTO:18907436033@163.com?subject=ErrorSend" method="post" enctype="text/plain">
+反馈问题<br>
+<textarea name="error" placeholder="请简要描述您遇到的问题" cols=40 rows=6 wrap="hard" required></textarea> <br>
+<input type="submit" value='提交'>
+<input type="reset" value="重置">
+</form>
+</p>
+<p>--------</p>
+
+<!--我是分界线-->
+
+<form action="MAILTO:18907436033@163.com" method="post" enctype="text/plain" charset="UTF-8">
+<p>评论区</p>
+<textarea id="pltextarea" name="input" required="required" placeholder="在这里输入评论内容" cols=40 wrap="hard" rows=6 charset="UTF-8"></textarea><br>
+<input type="file" name="file"><br>
+<input type="submit" value='提交'>
+<input type="reset" value="重置">
+</form>
+
+    </body>
+</html>
