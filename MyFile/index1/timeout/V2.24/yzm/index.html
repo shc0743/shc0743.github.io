@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<TITLE>生成验证码</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function createCode(len)
+{
+var seed = new Array(
+'abcdefghijklmnopqrstuvwxyz',
+'0123456789',
+'zyxwvutsrqponmlkjihgfedcba',
+'9876543210'
+); //创建需要的数据数组
+var idx,i;
+var result = ''; //返回的结果变量
+for (i=0; i<len; i++) //根据指定的长度
+{
+idx = Math.floor(Math.random()*3); //获得随机数据的整数部分-获取一个随机整数
+result += seed[idx].substr(Math.floor(Math.random()*(seed[idx].length)), 1);//根据随机数获取数据中一个值
+}
+return result; //返回随机结果
+}
+function test() {
+var inputRandom=
+document.getElementById("inputRandom").value;
+var autoRandom=
+document.getElementById("autoRandom").innerHTML;
+if(autoRandom==""){
+alert("请获取")
+sel.disabled=true
+a.click()
+} else if(inputRandom==autoRandom) {
+alert("通过验证");
+} else {
+alert("没有通过验证");
+}
+}
+function ymyx(){
+if(this.value.length>12){
+this.value="复制无效!"
+}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+验证码长度：
+<SELECT id="sel">
+<option value=1>1</option>
+<option value=2>2</option>
+<option value=3>3</option>
+<option value=4>4</option>
+<option value=5>5</option>
+<option value=6>6</option>
+<option value=7>7</option>
+<option value=8>8</option>
+<option value=9>9</option>
+<option value=10>10</option>
+<option value=100 selected>100</option>
+</SELECT>
+<BR>
+<table>
+<tr>
+<td>验证码：</td>
+<td><input type="text" id="inputRandom" onclick="this.value=''" onchange="if(this.value.length>12) {this.value='复制无效!';this.readonly=true;setTimeout('location.reload()',10000)}"></td>
+<td><label id="autoRandom" value=""></label><INPUT TYPE="button" VALUE="获取验证码" ONCLICK="autoRandom.innerHTML=createCode(sel.value)" id=a></td>
+<td><img src="yanzheng.jpg" alt="验证" onclick="test()"></td>
+</tr>
+</table>
+<script type="text/javascript">
+window.onload()=autoRandom.innerHTML=createCode(sel.value);
+</script>
+</BODY>
+</HTML>
