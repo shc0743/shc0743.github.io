@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+red{color:#ff0000}
+blue{color:#0000ff}
+</style>
+</head>
+<body>
+
+<p>
+
+用户登录<br>
+账号:[<pwinp id=pwinp0 onclick="inpair(this)">请输入</pwinp>]<br>
+密码:[<pwinp id=pwinp1 onclick="inpair(this)">请输入</pwinp>]<br>
+
+<button onclick="startinput()">开始输入</button>
+<button onclick="stopinput()">确定</button>
+<button onclick="nowlogin(this)" id=nowlogin>登录</button>
+<button onclick="newzc.hidden=false">注册</button>
+<button onclick="loadmore(1)">更多</button>
+<button onclick="getlogin()">还原登录</button><br>
+
+<div id=inyzm hidden><iframe src="inyzm.htm"></iframe></div>
+
+<div id=newzc hidden><iframe src="zczh.htm"></iframe></div>
+
+<div id="fidpw" hidden><iframe src="fpw.htm" id=fpe width="320px"></iframe></div>
+
+<div id=moreset hidden><iframe src="moreElement.htm"></iframe></div>
+
+
+<div style="width:360px;height:300px;background-color:#FEFFCE" id=output1>登录结果反馈</div>
+<button onclick="clearout()">清除</button>
+
+</p>
+
+<script>
+    //让元素可以编辑
+    function startinput(){
+try{
+        pwinp0.contentEditable = true;
+        pwinp1.contentEditable = true;
+}catch(err){
+alert(err)
+}
+    }
+
+    //让元素恢复正常状态
+    function stopinput(){
+        pwinp0.contentEditable = false;
+        pwinp1.contentEditable = false;
+if(pwinp0.innerHTML=='') pwinp0.innerHTML='请输入'
+if(pwinp1.innerHTML=='') pwinp1.innerHTML='请输入'
+    }
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // 在数字 < 10 之前加零
+  return i;
+}
+echotime = function (){
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  return  "[" + h + ":" + m + ":" + s + "]";
+}
+function checkout1(){
+var o = document.getElementById("output1").innerHTML
+var g = o.split("<br>")
+var n = g.length - 1 
+n = Number(n)
+//alert(n)
+if(n>11) {
+output1.innerHTML='登录结果反馈<br>'+echotime() + '已自动清空'
+}
+}
+function clearout(){
+output1.innerHTML="登录结果反馈<br>"+echotime()+"已清空,点<a href='javascript:output1.innerHTML=\"登录结果反馈\"'>我</a>全部清空"
+}
+</script>
+<script>
+function nowlogin(the){
+try{
+the.disabled=true
+var p0,p1
+p0 = document.getElementById("pwinp0").innerHTML
+p1 = document.getElementById("pwinp1").innerHTML
+
+function ysyq(){
+var msy = function (){
+document.getElementById("o")
+}
+setTimeout(msy,1000)
+return undefined
+}
+
+var name= localStorage.getItem('zyusername'); 
+var pw=localStorage.getItem('zypw');
+var tel=localStorage.getItem('zytel');
+var a=0,b=0
+if(pw=='') {
+a=1
+}
+if(name==''){
+b=1
+}
+if(a&b==1){
+name="123456"
+pw="123456"
+tel=undefined
+}
+
+
+if(p0=="123456"||p0==name) {
+if(p1=="123456"||p1==pw){
+errmsg = echotime() + "<blue>操作成功,账号" + p0 + ",密码" + p1 + "</blue><br>" + echotime() + "<blue>点<a href='javascript:exit()'>我</a>退出</blue>"
+checkout1()
+output1.innerHTML=output1.innerHTML + "<br>" + errmsg
+localStorage.setItem('userlog', '1');
+
+} else {
+errmsg = echotime() + "<red>密码错误</red>" 
+checkout1()
+output1.innerHTML=output1.innerHTML + "<br>" + errmsg
+}
+} else {
+errmsg = echotime() + "<red>账号不存在</red>" 
+checkout1()
+output1.innerHTML=output1.innerHTML + "<br>" + errmsg
+}
+the.disabled=false
+
+}//end try
+catch(err){
+alert(err)
+}
+}
+
+function getlogin(){
+inyzm.hidden=false
+}
+
+function hylogin(){ //还原登录
+var lt = localStorage.getItem('userlog');
+"login type";0;1;
+if(lt=='1') {
+errmsg = echotime() + "<blue>还原成功,点<a href='javascript:exit()'>我</a>退出</blue>" 
+checkout1()
+output1.innerHTML=output1.innerHTML + "<br>" + errmsg
+} else {
+errmsg = echotime() + "<red>抱歉,没有找到您的登录记录</red>" 
+checkout1()
+output1.innerHTML=output1.innerHTML + "<br>" + errmsg
+}
+}
+
+inpair = function (a){
+if(a.contentEditable==true|| a.contentEditable=="true"){
+a.innerHTML=''
+}
+}
+function exit(){
+localStorage.removeItem('userlog');
+location.reload()
+}
+function findpw(){
+newzc.hidden=true
+fidpw.hidden=false
+}
+function loadmore(a){
+ if(a&1){
+  moreset.hidden=false
+ } else {
+  moreset.hidden=true
+ }
+}
+</script>
+</body>
+</html>

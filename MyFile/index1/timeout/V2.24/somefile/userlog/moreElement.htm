@@ -1,0 +1,57 @@
+<!DOCTYPE html><meta charset="UTF-8"> 
+<link rel="stylesheet" type="text/css" href="noline.css" />
+<script src="../sometool.js"></script>
+<script src="../../js/jquery/jquery.js"></script>
+<div id=page1>
+更多<hr>
+<a href="javascript:openConsole()">Console(控制台)</a><br>
+<a href="javascript:parent.location.reload()">reload(刷新)</a><br>
+</div>
+<div id=cons hidden>
+Input &nbsp; <input id=execode><button id=execd onclick="exectioncode()">Enter</button><br>Tool:<a href="javascript:location.reload()">location.reload</a>
+</div>
+
+<script>
+function pageset(n,now){
+document.getElementById("page"+n).hidden=false
+document.getElementById("page"+now).hidden=true
+}
+function setinner(id,inner,ret){
+var retdata = document.getElementById(id).innerHTML=inner;
+if(parseInt(ret)&1==1) {
+return retdata;
+}
+}
+function openConsole(){
+cons.hidden=false
+page1.hidden=true
+}
+function exectioncode(){
+execd.disabled=true
+try{
+var out = eval(execode.value)
+cons.innerHTML=cons.innerHTML+"<br>Output&nbsp;"+out+"<br>"+'<button onclick="nextcode()">Next</button>'
+ }
+catch(SyntaxError){
+cons.innerHTML=cons.innerHTML+
+"<br>Output&nbsp;"+
+SyntaxError+
+"<br>"+
+'<button onclick="nextcode()">Next</button>'
+ }
+}
+function nextcode(){
+execd.disabled=false
+cons.innerHTML='Input &nbsp; <input id=execode><button onclick="exectioncode()" id="execd">Enter</button><br>Tool:<a href="javascript:location.reload()">location.reload</a>'
+}
+function checkexeout(){
+var o = document.getElementById("cons").innerHTML
+var g = o.split("<br>")
+var n = g.length - 1 
+n = Number(n)
+//alert(n)
+if(n>11) {
+o=''
+}
+}
+</script>
