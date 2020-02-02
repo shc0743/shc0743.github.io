@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<body>
+
+<p>输入数字并点击提交：</p>
+
+<input id="id1" type="number" min="100" max=1000 step=4 required>
+
+<button onclick="myFunction()">提交</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var txt = "";
+  if (document.getElementById("id1").validity.rangeUnderflow||id1.value=="") {
+    txt = "不对呦!<br>温馨提示:这个数字比100大,比1000小哦!";
+  } else {
+    txt = "输入有效!";
+  } 
+  document.getElementById("demo").innerHTML = txt+"<br>乖,只要你听话,叔叔给你买糖吃呦!";
+}
+</script>
+
+</body>
+</html>
