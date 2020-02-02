@@ -1,0 +1,91 @@
+<!DOCTYPE html><meta charset="UTF-8">
+<html>
+<body>
+
+<p>计时:<output id="result" style="color:blue">undefined</output>
+<br>
+<input type="checkbox" id="tx"><input type=number id="alerttime" min=1 max=99999 style=color:blue>秒后提醒我</p>
+<button id="startWorker" onclick="startWorker()">开始</button> 
+<button id="stopWorker" onclick="stopWorker()">停止</button> 
+<button onclick="reset()">重置</button> <br>
+
+<!--<p>倒计时<input id="result2" style="color:blue">秒</p>
+<button onclick="startWorker2()">开始</button> 
+<button onclick="stopWorker()">停止</button>-->
+
+<p id=demo2 style=display:none ><output id="demo" style="color:blue">10</output>秒后自动刷新</p>
+<br /><br />
+
+<script>
+function startWorker()
+{
+if(typeof(Worker)!=="undefined")
+  {
+  if(typeof(w)=="undefined")
+  {
+  w=new Worker("jishi.js");
+  }
+  w.onmessage = function (event) {
+    document.getElementById("result").innerHTML=event.data;
+
+if(tx.checked==true || tx.checked=="checked"){
+if(parseFloat(alerttime.value)>0){
+if(result.innerHTML == alerttime.value || parseInt(result.innerHTML) > parseInt(alerttime.value)){
+result.style.color="red"
+alerttime.style.color="red"
+timeover.style.display="block"
+result.innerHTML = result.innerHTML + "<br>时间到，计时结束!"+
+"<br> <output style=color:blue>Exceed <output style=color:red>[ " + (event.data - parseInt(alerttime.value)) + " ]</output> second.</output>"
+} else {
+//如果没到时间
+resblue(true)
+}
+} else {
+//如果提醒时间小于等于≤小于等于0
+resblue(false)
+} 
+} else {
+//如果没有选择提醒
+resblue(true)
+}
+    };
+  }
+else
+  {
+  document.getElementById("result").innerHTML="Sorry, your browser does not support Web Workers...";
+  }
+}
+
+function stopWorker()
+{ 
+w.terminate();
+delete w
+resblue(false)
+/*
+demo2.style.display="block"
+setTimeout(shclose,1000)
+*/
+}
+function shclose(){
+demo.innerHTML = parseInt(demo.innerHTML) - 1 
+if(parseInt(demo.innerHTML) < 0) location.reload()
+setTimeout(shclose,1000)
+}
+function reset(){
+result.innerHTML=typeof(hello)
+resblue(false)
+}
+function resblue(sfbc){
+result.style.color="blue"
+if(sfbc){
+document.getElementById("result").innerHTML=event.data;
+}
+alerttime.style.color="blue"
+timeover.style.display="none"
+}
+</script>
+
+<p id="timeover" style="font-size:100px;color:red;display:none">时间到,计时结束!</p>
+
+</body>
+</html>
