@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>HTMLElement-Input-Type-Basic</title>
+    <style>
+      html, input {
+        font-family: sans-serif;
+      }
+
+      body {
+        width: 90%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      div {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      label, input, button {
+        font-size: 14px;
+        line-height: 1.5
+      }
+
+      label {
+        text-align: right;
+        width: 30%;
+        margin-right: 2%;
+      }
+
+      input {
+        flex: auto;
+      }
+
+      button {
+        width: 70%;
+        margin: 0 auto;
+      }
+
+    </style>   
+    <style>
+      textarea {
+        height: 80px;
+        background-color: #F4F7F8;
+        border: none;
+        border-left: 6px solid #558ABB;
+        color: #4D4E53;
+        width: 90%;
+        max-width: 700px;
+        padding: 10px 10px 0px;
+      }
+
+      .playable-buttons {
+        text-align: right;
+        width: 90%;
+        max-width: 700px;
+        padding: 5px 10px 5px 26px;
+      }
+
+      section {
+        width: 90%;
+        max-width: 700px;
+        border: 1px solid #4D4E53;
+        border-radius: 2px;
+        padding: 10px 14px 10px 10px;
+        margin-bottom: 10px;
+      }
+
+      section input {
+        display: block;
+        margin: 5px;
+      }
+    </style>
+   </head>
+  <body>
+    <form>
+      <div>
+        <label for="text">text input type: </label>
+        <input type="text" id="text" name="text">
+      </div>
+      <div>
+        <label for="pwd">password input type: </label>
+        <input type="password" id="pwd" name="pwd">
+      </div>
+      <div>
+        <label for="email">email input type: </label>
+        <input type="email" id="email" name="email">
+      </div>
+      <div>
+        <label for="url">url input type: </label>
+        <input type="url" id="url" name="url">
+      </div>
+      <div>
+        <label for="number">number input type: </label>
+        <input type="number" id="number" name="number">
+      </div>
+      <div>
+        <label for="tel">tel input type: </label>
+        <input type="tel" id="tel" name="tel">
+      </div>
+      <div>
+        <label for="search">search input type: </label>
+        <input type="search" id="search" name="search">
+      </div>
+      <div>
+        <label for="">input type: </label>
+        <input type="color" id="color" name="color">
+      </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    <section>
+    </section>
+
+    <textarea id="code" class="playable-code">
+<input id="input1" type="text">
+<input id="input2" type="text">
+    </textarea>
+
+    <div class="playable-buttons">
+      <input id="reset" type="button" value="Reset">
+    </div>
+  </body>
+
+  <script>
+    var section = document.querySelector('section');
+    var textarea = document.getElementById('code');
+    var reset = document.getElementById('reset');
+    var edit = document.getElementById('edit');
+    var code = textarea.value;
+
+    function fillSection() {
+      while (section.firstChild) {
+          section.removeChild(section.firstChild);
+      }
+      section.innerHTML = textarea.value;
+    }
+
+    reset.addEventListener('click', function() {
+      textarea.value = code;
+      fillSection();
+    });
+
+    textarea.addEventListener('input', fillSection);
+    window.addEventListener('load', fillSection);
+  </script>
+    </form>
+    <script>
+
+    </script>
+</body>
+  </html>
