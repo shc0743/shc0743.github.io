@@ -1,0 +1,40 @@
+<!DOCTYPE html><meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="userlog/noline.css" />
+<script src="sometool.js"></script>
+<script>
+    //让iframe转为设计模式
+    function startEdit(){
+        var editor = document.getElementById("pageEditor");
+        editor.contentWindow.document.designMode = "on";
+    }
+ 
+    //让iframe设计模式关闭
+    function stopEdit(){
+        var editor = document.getElementById("pageEditor");
+        editor.contentWindow.document.designMode = "off";
+        //显示编码后的html代码
+        var editedHTML = document.getElementById("editedHTML");
+        editedHTML.textContent = editor.contentWindow.document.body.innerHTML;
+    }
+function setwz(){
+pageEditor.src=wz.value
+}
+</script>
+<script>
+function save(the){
+if(savepw.value=="123456") {
+pageEditor.src.innerHTML= pageEditor.innerHTML the.disabled=1
+the.innerHTML="操作成功!"
+ } else {
+savepw.disabled=1
+savepw.value="密码错误!"
+setTimeout("savepw.disabled=0",5000)
+  }
+}
+</script>
+<iframe id="pageEditor" src="" style="width:500px;height:150px"></iframe><br>
+<button onclick="startEdit()">开始编辑</button>
+<button onclick="stopEdit()">停止编辑</button><br>
+保存密码<input placeholder=输入保存密码 id=savepw><button onclick="save(this)">保存</button><br>
+<input placeholder="输入网址" id=wz size=45><input size=4 value=确定 readonly onclick="setwz()">
+<div id="editedHTML" style="width:500px;height:150px;background-color:#FEFFCE"></div>

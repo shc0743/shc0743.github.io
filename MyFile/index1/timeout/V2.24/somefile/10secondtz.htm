@@ -1,0 +1,71 @@
+<!DOCTYPE html><meta charset="UTF-8">
+<html>
+<body style="font-size:50px">
+
+<p>计时:<output id="result" style="color:blue">undefined</output></p>
+<button id="startWorker" onclick="startWorker()">开始</button> 
+<button id="stopWorker" onclick="stopWorker()">停止</button> 
+<button onclick="reset()">重置</button> <br>
+
+<!--<p>倒计时<input id="result2" style="color:blue">秒</p>
+<button onclick="startWorker2()">开始</button> 
+<button onclick="stopWorker()">停止</button>-->
+
+<p id=demo2 style=display:none ><output id="demo" style="color:blue">10</output>秒后自动刷新</p>
+<br /><br />
+
+<script>
+function startWorker()
+{
+if(typeof(Worker)!=="undefined")
+  {
+  if(typeof(w)=="undefined")
+  {
+  w=new Worker("jishi.js");
+  }
+  w.onmessage = function (event) {
+    document.getElementById("result").innerHTML=event.data;
+    };
+  }
+else
+  {
+  document.getElementById("result").innerHTML="Sorry, your browser does not support Web Workers...";
+  }
+}
+
+function stopWorker()
+{ 
+w.terminate();
+delete w
+if(parseFloat(result.innerHTML)>9.99&&parseFloat(result.innerHTML)<10.11) {
+result.innerHTML=("挑战成功!")
+}
+resblue(false)
+/*
+demo2.style.display="block"
+setTimeout(shclose,1000)
+*/
+}
+function shclose(){
+demo.innerHTML = parseInt(demo.innerHTML) - 1 
+if(parseInt(demo.innerHTML) < 0) location.reload()
+setTimeout(shclose,1000)
+}
+function reset(){
+result.innerHTML=typeof(hello)
+resblue(false)
+}
+function resblue(sfbc){
+result.style.color="blue"
+if(sfbc){
+document.getElementById("result").innerHTML=event.data;
+}
+alerttime.style.color="blue"
+timeover.style.display="none"
+}
+</script>
+
+<p id="timeover" style="font-size:100px;color:red;display:none">时间到,计时结束!</p>
+
+</body>
+</html>
