@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="../sometool.js"></script>
+<link rel="stylesheet" type="text/css" href="a-set-{01}.css" />
+<div>
+<h1>[插件]成绩分析器</h1>
+<p>说明:此插件可以根据您最近三次或以上的分数,智能分析您的考试成绩</p>
+<div>
+<form action="javascript:fxcj()">
+成绩<input type=number min=0 max=100 step=0.1> <img src="addone.jpg"  alt="+" onclick="addincj()"  height=20 width=20 />
+</form>
+ </div>
+<div hidden>
+
+ </div>
+<a href="javascript:fxcj()">分析</a><nbsp>5</nbsp><a href="javascript:location.reload()">重置</a><br>
+预测成绩:<output id=out1 style=color:blue>未分析</output>
+</div>
+
+<script>
+function addincj(){
+var d1a2=tagElement('div')
+d1a2[1].innerHTML=d1a2[1].innerHTML+ '<br>成绩<input type=number min=0 max=100 step=0.1> <img src="addone.jpg"  alt="+" onclick="addincj()" height=20 width=20 />'
+var aimg=tagElement('img')
+var i;
+for(i=0;i<aimg.length;i++){
+if(i<(aimg.length-1)){
+aimg[i].hidden=1
+}
+ }
+}
+function fxcj(){
+var incj=tagElement('input')
+var aCc=[]
+var i=0
+var sub=0
+for(i=0;i<incj.length;i++){
+if(isNaN(incj[i].value)) {
+out1.innerHTML="请输入数字!"
+return;
+}
+aCc[i]=incj[i].value
+ }
+for(i=0;i<aCc.length;i++){
+sub=sub+(Number(aCc[i])*10)
+ }
+sub=sub/aCc.length/10
+out1.innerHTML=sub
+}
+</script>

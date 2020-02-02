@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<meta name="viewport" content="user-scalable=yes">
+<meta charset="UTF-8">
+<style>
+.bord{
+border:1px solid;
+}
+a{
+color:blue;
+text-decoration:none;
+}
+</style>
+<div>
+<h1>大肥妈专项考试-02</h1>
+<div class="bord">语文题<br>
+一.(1题)今天是<input type=date value="1970-01-01"><br>
+二.选择题(3题)<br>
+1.南朝___寺,多少楼台__中(<input maxlength=1 size=2>)<br>
+A.四百八十,风雨<br>
+B.八百四十,烟雨<br>
+C.四百八十,烟雨<br>
+D.八百四十,风雨<br>
+2.春__,处处__。夜来__声,__多少。(<input maxlength=1 size=2>)<br>
+A.眠不觉晓,闻啼鸟,巴掌,不知死<br>
+B.天不洗澡,蚊子咬,风雨,花落知<br>
+C.眠不觉晓,闻啼鸟,风雨,花落知<br>
+D.天不洗澡,蚊子咬,巴掌,不知死<br>
+3.下面没有错别字的一组是<input maxlength=1 size=2><br>
+A.计划,新年,恢复,分析<br>
+B.洗噪,蚊子,风雨,滑落<br>
+C.答题,比赛,天法,厨房<br>
+D.黄瓜,愤努,突然,打车<br>
+三.(1题)我把水杯放到桌上。改为"被"字句:<input maxlength=9 size=25>
+</div><br>
+<div class="bord">数学题<br>
+一.判断题(1题):如果a/b=(3/5),那么a=3,b=5。<input maxlength=2 size=4>(正确/错误)<br>
+二.应用题(5题)<br>
+1. 你见过“驴拉磨”吗?如果驴绕着一个半径为1m的圆走一圈,大约要走<input maxlength=4 size=4>米。<br>
+2.右图中的双面绣作品中间部分的画是一个直径是20cm的圆。这幅画的面积是<input maxlength=3 size=3>cm2?<br>
+3.用10m长的铁条做直径是50cm的圆形铁环,最多可以做<input maxlength=1 size=2>个?<br>
+4.儿童乐园要修建一个圆形旋转木马场地,木马旋转范围的直径是8m,周边还要留出1m宽的小路,并在外侧围上栏杆,这块场地的占地面积是<input maxlength=4 size=4>m2?<br>
+5.一个羊圈依墙而建,呈半圆形,半径是5m。修这个羊圈需要<input maxlength=4 size=4>m的栅栏?<br>
+三.图形题(2题)<br>
+1.街心公园有两块半圆形的草坪,它们的周长都是128.5m,这两块草坪的总面积是<input maxlength=6 size=7>m2?
+2.<output class=bord>直径8cm</output>周长<input maxlength=5 size=6>cm
+</div><br>
+<div class="bord" 7题>英语题<br>
+一.选择题(5题)<br>
+1.We <input maxlength=1 size=2> waste water.<br>
+A.should<nbsp>5</nbsp>
+B.shouldn't<nbsp>5</nbsp>
+C.candy<nbsp>5</nbsp><br>
+2.I <input maxlength=1 size=2> a storybook during the holiday.<br>
+A.write<nbsp>5</nbsp>
+B.writing<nbsp>5</nbsp>
+C.wrote<nbsp>5</nbsp><br>
+3.We should use bikes <input maxlength=1 size=2> cars.<br>
+A.instead for<nbsp>5</nbsp>
+B.instead of<nbsp>5</nbsp>
+C.instead to<nbsp>5</nbsp><br>
+4.The third monkey's tail is the <input maxlength=1 size=2>.<br>
+A.big<nbsp>5</nbsp>
+B.bigger<nbsp>5</nbsp>
+C.biggest<nbsp>5</nbsp><br>
+5.Here's a card <input maxlength=1 size=2> you.<br>
+A.for<nbsp>5</nbsp>
+B.to<nbsp>5</nbsp>
+C.of<nbsp>5</nbsp><br>
+二.(2题)<br>
+1+1=<input maxlength=1 size=2><br>
+2+2=<input maxlength=1 size=2>
+</div>
+
+<a style="text-decoration:none;" href="javascript:nowstart()">开始答题</a><nbsp>5</nbsp><a style="text-decoration:none;" href="javascript:nowcorrect()">您还没有开始答题!</a><br><br><br><br> <br><br> <br><br><br><br><br><br> <br><br> <br><br>
+
+<script>
+function nowstart(){
+var allin= document.getElementsByTagName('input')
+window.tfdisa=false
+window.dtimeM=0
+window.dtimeS=0
+var i
+for(i=0;i<allin.length;i++){
+    allin[i].disabled=0
+    allin[i].style.backgroundColor='#ffffff'
+    if(i!==0) allin[i].value=''
+ }
+document.getElementsByTagName('a')[0].href="javascript:void(0)"
+document.getElementsByTagName('a')[1].innerHTML="提交打分"
+window.dtimeSst=setInterval(addsmile, 1000);
+}
+function addsmile(){
+dtimeS++;
+if(dtimeS<10) {var tmptS="0"+String(dtimeS)} else {var tmptS=dtimeS}
+if(dtimeM<10) {var tmptM="0"+String(dtimeM)} else {var tmptM=dtimeM}
+  if(dtimeS==60) {
+    dtimeS=0
+    dtimeM++;
+  }
+document.getElementsByTagName('a')[0].innerHTML=
+tmptM+":"+tmptS
+}
+function nowcorrect(){
+window.clearInterval(dtimeSst)
+var a=document.getElementsByTagName('input')
+var i=0
+var fs=0
+try{
+if(typeof(tfdisa)!==undefined&&tfdisa){
+document.getElementsByTagName('a')[1].innerHTML="您还没有开始答题!"
+return;
+}
+var dtm= dtimeM
+var dts = dtimeS
+window.dtimeM=0
+window.dtimeS=0
+winload()
+document.getElementsByTagName('a')[0].innerHTML="开始答题"
+document.getElementsByTagName('a')[0].href="javascript:nowstart()"
+}catch(err){alert(err)}
+
+{
+
+let checktime=function(inp){
+if(inp<10) return "0"+inp
+return inp
+}
+let da=new Date()
+let dy=da.getFullYear()
+let dm=checktime(da.getMonth()+1)
+let dd=checktime(da.getDate())
+let din=a[i].value.split("-")
+if(din[0]==dy&&din[1]==dm&&din[2]==dd) { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+
+}
+if(a[i].value.toUpperCase()=="C") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value.toUpperCase() =="C"||
+a[i].value.toUpperCase() =="D") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value.toUpperCase() =="A") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="水杯被我放到桌上。") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="错误") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="6.28") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="314") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="6") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="78.5") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="15.7") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="1962.5") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="25.12") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value.toUpperCase()=="B") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value.toUpperCase()=="C") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value.toUpperCase()=="B") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value.toUpperCase()=="C") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value.toUpperCase()=="A") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="2") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+if(a[i].value=="4") { 
+a[i].style.backgroundColor="#00ff00"
+fs+=5
+ } else {
+a[i].style.backgroundColor="#ff0000"
+}
+i++;
+document.getElementsByTagName('a')[1].innerHTML="本次分数"+fs+",用时"+dtm+"分"+dts+"秒"
+
+}
+
+try{
+window.onload=function(){winload()}
+function winload(){
+try{
+var allin= document.getElementsByTagName('input')
+window.tfdisa=true
+var i
+for(i=0;i<allin.length;i++){
+    allin[i].disabled=true
+ }
+}catch(err){alert(err)}
+}
+
+}catch(err){alert(err)}
+
+window.addevent =function (ojt,even,func,capt){
+if(capt===undefined) {capt=0}
+ojt.addEventListener(even, func, capt);
+/*addEventListener(event, function, useCapture);*/
+}
+window.addeventbyid =function (id,even,func,capt){
+if(capt===undefined) {capt=false}
+getElement(id).addEventListener(even, func, capt);
+}
+
+addevent(window,"load",function (){
+try{
+var nbs=document.getElementsByTagName('nbsp')
+if(nbs.length!==0){
+var nbi,nbn;
+for(var i=0;i<nbs.length;i++){
+  nbi=nbs[i].innerHTML
+  nbsi=nbs[i]
+    if(typeof(nbi)!==undefined) {
+        if(!(isNaN(parseInt(nbi)))) {
+nbn=parseInt(nbi)
+nbs[i].innerHTML=""
+for(var ii=0;ii<nbn+1;ii++){
+nbs[i].innerHTML+="&nbsp;"
+}
+nbn=undefined
+        }
+    }
+  nbi=undefined
+  }
+ }
+
+ /*end-try*/;}
+catch(err){alert(err)}
+},false)
+</script>
+
+</div>
