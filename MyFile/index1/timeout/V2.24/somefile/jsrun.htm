@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="userlog/noline.css" />
+<script src="sometool.js"></script>
+
+代码:<textarea id="dm" name="input" required="required" placeholder="请在这里输入要测试的代码,不支持JavaScript哦" cols=50 wrap="hard" rows=10 charset="UTF-8"></textarea>
+<br>
+
+JavaScript:<textarea id="js" name="input" required="required" placeholder="请在这里输入要测试的JavaScript,不支持代码哦" cols=50 wrap="hard" rows=10 charset="UTF-8"></textarea>
+
+<p onclick="run()">查看代码执行结果</p>
+
+<p id="out"></p>
+
+<script>
+function run(){
+out.innerHTML = dm.value;this.innerHTML='执行结果(点击即可刷新结果)';
+a1.href='javascript:'+js.value
+a1.click()
+}
+</script>
+
+<a id=a1 style=display:none >hello</a>

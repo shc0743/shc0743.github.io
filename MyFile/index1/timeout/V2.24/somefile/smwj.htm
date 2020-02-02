@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="userlog/noline.css" />
+<script src="sometool.js"></script>
+<div>
+<h1>私密信息创建/查看/移除</h1><hr>
+创建<br>
+信息号<input id="xxh1"><br>
+信息密码<input id="xxpw1"><br>
+信息内容<br>
+<textarea cols=40 wrap="hard" rows=5 id="xxnr1"></textarea><br>
+<a href="javascript:setsmxx()" id=setsmxx>创建</a>
+<a href="javascript: location.reload()" id=relsmxx hidden>操作成功!点击刷新</a>
+<!--setpw-->
+<div id="setpw" hidden>
+系统检测到您第一次使用此功能,请选择<br>
+<input type=checkbox checked onclick="newjlu(this)">创建使用记录<br>
+<a href="javascript:spwnext()" id="spwnext">下一步</a>
+<a href="javascript:sessionStorage.setItem('zysmuse',1);document.getElementById('setpw').hidden=1;setsmxx()" id="spwok" hidden>完成</a>
+</div>
+<div id="setpw2" hidden><hr>
+请创建记录移除密码
+<div style="font-size:16px">记录移除密码:即移除使用记录需要的密码</div>
+<input placeholder="设置密码" id="movepw"><a href="javascript:" onclick="setmovepw(this)">确定</a><br>
+</div>
+<!--/setpw/-->
+<hr>
+查看<br>
+信息号<input id="xxh2"><br>
+信息密码<input id="xxpw2"><br>
+信息内容<br><textarea cols=40 wrap="hard" rows=5 id="xxnr2" readonly></textarea><br><a href="javascript:getsmxx()">查看</a>
+<hr>
+移除<br>
+信息号<input id="xxh3"><br>
+信息密码<input id="xxpw3"><br>
+移除结果<input id="xxnr3" readonly><br>
+<a href="javascript:removesmxx()">移除</a>
+<hr>移除使用记录<br><div id=movepw2 hidden>
+输入密码<input id="inmovepw">
+<a href="javascript:yzinmvpw()" >确定</a>
+</div>
+<a href="javascript:void(0)" onclick="moveusejl(this);">确定</a>
+</div>
+
+<script>
+setsmxx=function (){
+var use = localStorage.getItem('zysmuse');
+var use2 = sessionStorage.getItem('zysmuse');
+if(!(Boolean(Number(use))||Boolean(Number(use2)))){
+document.getElementById("setpw").hidden=false
+return 0;
+}
+var tmp = document.getElementsByTagName("input");
+var xxh1=tmp[0]
+tmp=undefined
+if(xxh1.value==""|| xxpw1.value==""){
+xxnr1.value="信息号或信息密码不能为空!"
+xxnr1.onclick=function (event){
+xxnr1.value=''
+xxnr1.onclick=""
+}
+} else if(xxnr1.value==""){
+xxnr1.value="信息内容不能为空!"
+xxnr1.onclick=function (event){
+xxnr1.value=''
+xxnr1.onclick=""
+}
+} else {
+localStorage.setItem('zysmnum'+xxh1.value, xxh1.value);
+localStorage.setItem('zysmpw'+xxpw1.value, xxpw1.value);
+localStorage.setItem('zysminn'+xxh1.value, xxnr1.value);
+document.getElementById("setsmxx").hidden=1
+relsmxx.hidden=0
+ }
+} 
+function setpw(){
+localStorage.setItem('zysmuse',1);
+localStorage.setItem('zysmusepw',rstpaw.value);
+setpw.innerHTML="操作成功!"
+setsmxx()
+}
+</script><script>
+getsmxx=function (){
+try{
+if(xxpw2.value==""&& xxh2.value==""){
+xxnr2.value="您没有输入任何内容!!"
+return 0
+}
+var num = localStorage.getItem('zysmnum'+xxh2.value);
+var pw = localStorage.getItem('zysmpw'+xxpw2.value);
+var inn = localStorage.getItem('zysminn'+xxh2.value);
+if(num==""||xxh2.value!=num){
+xxnr2.value="信息号错误!"
+  } else if (pw==""||xxpw2.value!=pw){
+xxnr2.value="信息密码错误!"
+  } else if (inn==""){
+xxnr2.value="[错误]未知错误"
+  } else {
+xxnr2.value=inn
+  }
+}
+catch(err){alert(err)}
+} 
+removesmxx=function (){
+var num = localStorage.getItem('zysmnum'+xxh3.value);
+var pw = localStorage.getItem('zysmpw'+xxpw3.value);
+var inn = localStorage.getItem('zysminn'+xxh3.value);
+if(num==""||xxh3.value!=num){
+xxnr3.value="信息号错误!"
+  } else if (pw==""||xxpw3.value!=pw){
+xxnr3.value="信息密码错误!"
+  } else if (inn==""){
+xxnr2.value="[错误]未知错误"
+  } else {
+localStorage.removeItem('zysmnum'+xxh3.value);
+localStorage.removeItem('zysmpw'+xxpw3.value);
+localStorage.removeItem('zysminn'+xxh3.value);
+xxnr3.value="操作成功!"
+  }
+
+} 
+function clearxx(the){
+
+the.innerHTML="操作成功!"
+}
+
+function newjlu(the){
+if((the.checked)){
+document.getElementById("spwnext").hidden=0
+spwok.hidden=1
+ } else
+ {
+document.getElementById("spwnext").hidden=1
+spwok.hidden=0
+ }
+}
+function spwnext(){
+document.getElementById("setpw").hidden=1
+document.element("setpw2").hidden=0
+}
+function setmovepw(){
+localStorage.setItem('zysmmovepw',movepw.value)
+localStorage.setItem('zysmuse',1)
+getElement("setpw2").hidden=1
+setsmxx()
+}
+function moveusejl(the){
+var pw= localStorage.getItem('zysmmovepw');
+if(pw==""||pw==null){
+localStorage.removeItem('zysmmovepw');
+localStorage.removeItem('zysmuse');
+ } else 
+ {
+  document.element('movepw2').hidden=0
+  the.hidden=1
+ }
+}
+function yzinmvpw(){
+var pw= localStorage.getItem('zysmmovepw');
+if(inmovepw.value==pw){
+localStorage.removeItem('zysmmovepw');
+localStorage.removeItem('zysmuse');
+  setinner('movepw2', '操作成功!')
+ } else {
+  setinner('movepw2', getElement('movepw2').innerHTML+'密码错误!')
+ }
+}
+</script>
