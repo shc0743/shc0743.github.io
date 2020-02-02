@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+
+<body bgcolor="#000000" text="white" onload="inp.click()">
+
+<p>DOS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="../index.html" style="text-align:right;color:white;text-decoration:none;background-color:#ffffff;color:#000000">x</a></p>
+
+<hr />
+
+<p id="pa">
+C:/><output id="inp" contenteditable="true"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</output>
+</p>
+
+<script>
+function rundos(){
+/*
+inp=document.getElementByld("inp")
+a=document.getElementByld("a")
+pa=document.getElementByld("pa")
+pb=document.getElementByld("pb")
+*/
+//inp.value="javascript:alert()"
+//alert(inp.value)
+inp.contenteditable=false
+eval(inp.innerHTML)
+pa.innerHTML = pa.innerHTML + "<br>'" + inp.innerHTML + "' Successful execution.<br>" + pa.innerHTML
+}
+</script>
+
+<script>
+function checkinp(){
+inpi = inp.innerHTML
+if(inpi.indexOf("<br />")!==-1){
+rundos()
+}
+checkinp()
+}
+checkinp()
+</script>
+
+<a id="a" style=display:none>hello</a>
+
+</body>
+</html>
