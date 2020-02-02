@@ -1,0 +1,47 @@
+<!DOCTYPE html><meta charset="UTF-8">
+注册账号<hr>
+<div id=wel>
+账号:<input id=newname><br>
+密码:<input id=newpw><br>
+手机号码:<input id=newtel type=tel><br>
+电子邮件:<input id=newemi type=email><br>
+<a href="javascript:window.zcyg.hidden=false" style="text-decoration:none">验证</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="javascript:parent.findpw()">忘记密码...</a><br>温馨提示:输入空参数即可删除账号<br>
+<div id=zcyg hidden><iframe src="zcyg.htm"></iframe><br></div>
+<button onclick="nownew()" id=newuser disabled>确定</button>
+</div>
+
+<div id=ipw hidden>
+您正在尝试覆盖原有账号<br>请输入原账号的密码<br>
+密码:<input id=inpw><br>
+<button onclick="yzsrdmm()">确定</button>
+</div>
+
+<script>
+function nownew(){
+var zh = localStorage.getItem('zyusername');
+var mm = localStorage.getItem('zypw');
+if(zh!==""||mm!==""){
+wel.hidden=true
+ipw.hidden=false
+} else {
+zcl()
+ }
+}
+
+function zcl(){
+parent.localStorage.setItem('zyusername',newname.value);
+parent.localStorage.setItem('zypw',newpw.value);
+parent.localStorage.setItem('zytel',newtel.value);
+parent.localStorage.setItem('zyemi',newemi.value);
+document.write('注册成功!')
+
+}
+function yzsrdmm(){
+var mm = localStorage.getItem('zypw');
+if(inpw.value==mm){
+zcl()
+ } else {
+  ipw.innerHTML="密码错误!"
+ }
+}
+</script>

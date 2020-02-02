@@ -1,0 +1,48 @@
+<!DOCTYPE html><meta charset="UTF-8">
+<script src="../sometool.js"></script>
+<div id=yzs>
+验证<hr>
+1.向右滑动验证<input type=range value=0 min=0 max=100 step=0.0001 id=hg><br>
+2.点<a href="javascript:void(0)" onclick="yz()">我</a>完成验证<br>
+3.输出结果: <output id=errout>您没有进行验证操作</output>
+</div>
+
+<script>
+function yz(){
+try{
+if(hg.value=="100"){
+setinner("errout","验证成功!")
+parent.newuser.disabled=false
+} else {
+//滑竿错误
+setinner("errout","滑杆验证失败!当前"+hg.value)
+  }
+ }
+catch(err){alert(err)}
+}
+
+function startWorker()
+{
+if(typeof(Worker)!=="undefined")
+  {
+  if(typeof(w)=="undefined")
+  {
+  w=new Worker("../jishi.js");
+  }
+  w.onmessage = function (event) {
+    document.getElementById("yzt").innerHTML=event.data;
+
+    };
+  }
+else
+  {
+  document.getElementById("yzt").innerHTML="Sorry, your browser does not support Web Workers...";
+  }
+}
+
+function stopWorker()
+{ 
+w.terminate();
+delete w
+}
+</script>
