@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,%20initial-scale=1.0,user-scalable=yes">
+<title></title>
+<body style="width:90%;margin: 0 auto;text-align:center;">
+<div>
+<h1>你的另一半满意度调查</h1>
+<qton>1.您的性别?<br><input type=radio onclick="next(1,1)">男<br><input type=radio onclick="next(1,2)">女</qton>
+<qton>2.您对您的另一半是否满意?<br><input type=radio onclick="next(2,1)">满意<br><input type=radio onclick="next(2,2)">不满意</qton>
+<qton>3.为什么?<br><textarea rows="8" cols=50 wrap="hard" placeholder="在这里输入为什么"></textarea><br><button onclick="sub()">提交</button></qton>
+</div>
+
+<script>
+inputall={}
+window.qton=function(in){
+return document.getElementsByTagName('qton')[in]
+}
+function next(qt,tp){
+switch (qt) {
+case 1:{
+if(tp==1){
+qton(0).hidden=1
+qton(1).hidden=0
+inputall.xb="男"
+ } else {
+qton(0).hidden=1
+qton(1).hidden=0
+inputall.xb="女"
+ }
+}
+break; 
+case 2:{
+if(tp==1){
+qton(1).hidden=1
+qton(2).hidden=0
+inputall.myd="满意"
+ } else {
+qton(1).hidden=1
+qton(2).hidden=0
+inputall.myd="不满意"
+ }
+}
+break;
+default: 
+text = "期待周末~";
+} 
+}
+function sub(){
+document.body.innerHTML="<h1 style='color:green'>提交成功!</h1>"
+document.body.innerHTML+="性别:"+inputall.xb+"<br>满意度:"+inputall.myd+"<br>原因:"+document.getElementsByTagName('textarea')[0].value
+}
+</script>
