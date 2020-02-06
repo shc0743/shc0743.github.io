@@ -11,35 +11,8 @@
 </div>
 
 <script>
-inputall={}
 window.qton=function(in){
 return document.getElementsByTagName('qton')[in]
-}
-function next(qt,tp){
-switch (qt) {
-case 1:{
-if(tp==1){
-qton(0).hidden=1;qton(1).hidden=0;inputall.xb="男"
- } else {
-qton(0).hidden=1
-qton(1).hidden=0
-inputall.xb="女"
- }
-}
-break; 
-case 2:{
-if(tp==1){
-qton(1).hidden=1;qton(2).hidden=0;inputall.myd="满意"
- } else {
-qton(1).hidden=1
-qton(2).hidden=0
-inputall.myd="不满意"
- }
-}
-break;
-default: 
-text = "期待周末~";
-} 
 }
 function sub(){
 document.body.innerHTML="<h1 style='color:green'>提交成功!</h1>"
