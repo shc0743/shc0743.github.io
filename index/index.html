@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<title>Go to</title>
+<title></title>
 <div>
 <input size=50 placeholder='Please enter the action you want to perform and click "go to".'>
 <button href="javascript:void(0)" onclick="goto()" style="text-decoration:none;">Go to</button>
@@ -10,4 +10,25 @@ function goto(){
 var a=document.getElementsByTagName("input")[0].value
 window.open(a,"_self")
 }
+</script>
+<script type="text/javascript"> 
+//平台、设备和操作系统  
+var system ={  
+win : false,  
+mac : false,  
+xll : false,
+xll2 : false
+};  
+//检测平台  
+var p = navigator.platform;  
+system.win = p.indexOf("Win") == 0;  
+system.mac = p.indexOf("Mac") == 0;  
+system.xll = (p == "Xll") || (p.indexOf("Linux") == 0);
+system.xll2= (p == "X11") || (p.indexOf("Linux") == 0);
+//跳转语句，如果是手机访问就自动跳转到caibaojian.com页面  
+if(system.win||system.mac||system.xll||system.xll2){  
+window.location.href="comp/"; 
+} else {  
+window.location.href="mob/";  
+}  
 </script>
