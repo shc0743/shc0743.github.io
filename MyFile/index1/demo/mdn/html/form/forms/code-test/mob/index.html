@@ -20,7 +20,7 @@ function statjs(){
 document.getElementsByTagName('div')[0+1].innerHTML=eval(intxt.value)
 }
 sct1.onchange=function(){
-if(this.value=="html"){document.getElementsByTagName('div')[0+1].onkeyup=stathtml} else 
-if(this.value=="js"){document.getElementsByTagName('div')[0+1].onkeyup=statjs}
+if(this.value=="html"){intxt.onkeyup=stathtml} else 
+if(this.value=="js"){intxt.onkeyup=statjs}
 }
 </script>
