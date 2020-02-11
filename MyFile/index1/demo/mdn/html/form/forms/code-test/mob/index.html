@@ -18,7 +18,7 @@ document.getElementsByTagName('div')[0+1].innerHTML=intxt.value
 }
 function statjs(){
 try{
-if(/alert()/.test(intxt.value)){document.getElementsByTagName('div')[0+1].innerHTML="The \"alert()\" function has been disabled by the administrator.";return()}
+if(intxt.value.search("alert()")!==-1){document.getElementsByTagName('div')[0+1].innerHTML="External error:The \"alert()\" function has been disabled by the administrator.";return;}
 document.getElementsByTagName('div')[0+1].innerHTML=eval(intxt.value)
 }catch(err){document.getElementsByTagName('div')[0+1].innerHTML=err}
 }
