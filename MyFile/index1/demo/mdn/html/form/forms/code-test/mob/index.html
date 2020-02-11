@@ -18,7 +18,7 @@ document.getElementsByTagName('div')[0+1].innerHTML=intxt.value
 }
 function statjs(){
 try{
-if(intxt.value.search("alert()")!==-1||intxt.value.search("document.documentElement.innerHTML=")!==-1||intxt.value.search("document.body.innerHTML=")!==-1||intxt.value.search("document.write")!==-1||){document.getElementsByTagName('div')[0+1].innerHTML="External error:The operation has been disabled by the administrator.";return;}
+if(intxt.value.search("alert()")!==-1||intxt.value.search("document.documentElement.innerHTML=")!==-1||intxt.value.search("document.body.innerHTML=")!==-1||intxt.value.search("document.write")!==-1){document.getElementsByTagName('div')[0+1].innerHTML="External error:The operation has been disabled by the administrator.";return;}
 document.getElementsByTagName('div')[0+1].innerHTML=eval(intxt.value)
 }catch(err){document.getElementsByTagName('div')[0+1].innerHTML=err}
 }
