@@ -6,7 +6,7 @@
 <img src="apple.jpg" onclick="tmerr()" height=120 width=100><img src="apple.jpg" onclick="tmerr()" height=120 width=100><img src="apple.jpg" onclick="tmerr()" height=120 width=100><br />
 其他:<textarea cols=20 rows=1 onfocus="tmayok()" onkeyup="tmerr()" placeholder="把答案填写在这里"></textarea>
 </div>
-<script>
+<script type="test/js">
 passtm=0
 function checkPasstm(){
 if(passtm==4){
@@ -22,4 +22,18 @@ document.getElementsByTagName('textarea')[0].blur()
 function tmerr(){
 document.documentElement.innerHTML="<h1>回答错误!</h1><div><a href="/">回到首页</a></div><div><a href="answer.JPG">查看答案</a></div>"
 }
+</script>
+<script>
+(function(){
+var a=document.querySelectorAll("script[type=\"test/js\"]")
+if(a==null){return;}
+try{
+for(var i=0;i<a.length;i++){
+eval(a[i].innerHTML)
+ }
+}
+catch(err){
+alert(err)
+ }
+})()
 </script>
