@@ -10,7 +10,7 @@
 passtm=0
 function checkPasstm(){
 if(passtm==4){
-document.documentElement.innerHTML="<h1>恭喜通关!!!</h1><div><a href="/">回到首页</a></div>"
+document.documentElement.innerHTML="<h1>恭喜通关!!!</h1><div><a href='/'>回到首页</a></div>"
  }
 }
 function tmayok(){
@@ -20,7 +20,7 @@ document.getElementsByTagName('textarea')[0].blur()
  } else {document.getElementsByTagName('textarea')[0].focus()}
 }
 function tmerr(){
-document.documentElement.innerHTML="<h1>回答错误!</h1><div><a href="/">回到首页</a></div><div><a href="answer.JPG">查看答案</a></div>"
+document.documentElement.innerHTML="<h1>回答错误!</h1><div><a href='/'>回到首页</a></div><div><a href='answer.JPG'>查看答案</a></div>"
 }
 </script>
 <script>
