@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<title>Sign in to this</title>
+<body style="width:90%;margin: 0 auto;text-align:center;"><div>
+
+<img src="1.jpg"><br>
+<img src="2.jpg"><br>
+<img src="3.jpg"><br>
+
+<br><br><button onclick="location.href='../'">返回首页</button>
+
+</div><script>
+window.addEventListener("load",function(){
+wth=Number(screen.width)+"px"
+nwth=Number(screen.width)
+var inEle=document.getElementsByTagName('input')
+for(var i=0;i<inEle.length;i++){inEle[i].style.width=nwth-100+"px"}
+var btnEle=document.getElementsByTagName('button')
+for(var i=0;i<btnEle.length;i++){btnEle[i].style.width=nwth-100+"px"}
+var divEle=document.getElementsByTagName('div')
+for(var i=0;i<btnEle.length;i++){divEle[i].style.width=nwth-50+"px"}
+})
+</script>
