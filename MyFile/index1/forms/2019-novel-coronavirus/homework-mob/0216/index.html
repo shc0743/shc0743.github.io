@@ -19,6 +19,10 @@ for(var i=0;i<inEle.length;i++){inEle[i].style.width=nwth-100+"px"}
 var btnEle=document.getElementsByTagName('button')
 for(var i=0;i<btnEle.length;i++){btnEle[i].style.width=nwth-100+"px"}
 var divEle=document.getElementsByTagName('div')
-for(var i=0;i<btnEle.length;i++){divEle[i].style.width=nwth-50+"px"}
+for(var i=0;i<divEle.length;i++){divEle[i].style.width=nwth-50+"px"}
+})
+window.addEventListener("load",function(){
+var imgEle=document.getElementsByTagName('img')
+for(var i=0;i<imgEle.length;i++){imgEle[i].onclick=function(){open(this.src,'_self')}}
 })
 </script>
