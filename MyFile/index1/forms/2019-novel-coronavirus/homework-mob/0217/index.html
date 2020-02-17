@@ -1,1 +1,29 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<title>0217</title>
+<body style="width:90%;"><div>
 
+<img src="1.JPG" width=100 height=150><br>
+<img src="2.JPG" width=100 height=150><br>
+<img src="3.JPG" width=100 height=150><br>
+<img src="4.JPG" width=100 height=150><br>
+
+<br><br><button style="height:30px" onclick="location.href='../'">返回首页</button>
+
+</div><script>
+window.addEventListener("load",function(){
+wth=Number(screen.width)+"px"
+nwth=Number(screen.width)
+var inEle=document.getElementsByTagName('input')
+for(var i=0;i<inEle.length;i++){inEle[i].style.width=nwth-100+"px"}
+var btnEle=document.getElementsByTagName('button')
+for(var i=0;i<btnEle.length;i++){btnEle[i].style.width=nwth-100+"px"}
+var divEle=document.getElementsByTagName('div')
+for(var i=0;i<divEle.length;i++){divEle[i].style.width=nwth-50+"px"}
+})
+window.addEventListener("load",function(){
+var imgEle=document.getElementsByTagName('img')
+for(var i=0;i<imgEle.length;i++){imgEle[i].onclick=function(){open(this.src,'_self')};imgEle[i].width=screen.width;imgEle[i].height=screen.height;}
+})
+</script>
