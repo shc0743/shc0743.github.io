@@ -1,0 +1,23 @@
+<div>
+请输入您要百度的内容:<textarea rows=1 cols=45 placeholder=请输入您要百度的内容 id=in></textarea><br>
+<button onclick="openin('_self')">当前页面打开</button><br><button onclick="openin('_blank')">新页面打开</button>
+</div>
+<script type="test/js">
+function openin(inp){
+open("www.baidu.com/s?word="+in.value,inp)
+}
+</script>
+<script>
+(function(){
+var a=document.querySelectorAll("script[type=\"test/js\"]")
+if(a==null){return;}
+try{
+for(var i=0;i<a.length;i++){
+eval(a[i].innerHTML)
+ }
+}
+catch(err){
+alert(err)
+ }
+})()
+</script>
