@@ -23,6 +23,6 @@ for(var i=0;i<divEle.length;i++){divEle[i].style.width=nwth-50+"px"}
 })
 window.addEventListener("load",function(){
 var imgEle=document.getElementsByTagName('img')
-for(var i=0;i<imgEle.length;i++){imgEle[i].onclick=function(){open(this.src,'_self')}}
+for(var i=0;i<imgEle.length;i++){imgEle[i].onclick=function(){open(this.src,'_self')};imgEle[i].width=screen.width;imgEle[i].height=screen.height;}
 })
 </script>
