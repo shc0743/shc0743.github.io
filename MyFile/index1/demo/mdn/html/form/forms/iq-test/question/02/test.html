@@ -1,0 +1,21 @@
+<script>
+(function(){
+var path=location.href
+var inputContent=path.split("?")[1]
+if(inputContent.search("&")!==-1) inputContent=inputContent.split("&")
+var i=0
+for(;i<inputContent.length;i++){
+if(/=/.test(inputContent[i])){
+var =inputContent[i].replace("=","");
+break;
+ }
+if(i==inputContent.length-1) var =undefined;
+}
+
+if(){
+
+ } else {
+document.write("<center><h1>404</h1><p>您要访问的页面似乎出错了...</p></center>")
+ }
+})()
+</script>
