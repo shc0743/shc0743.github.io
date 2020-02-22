@@ -1,3 +1,11 @@
+/********
+DATA=2020-02-22
+LASTDATA=2020-02-22
+METHOD=GET
+QUOTE=<script src="https://shc7432.github.io/public/getLinkInput/getLinkInput.js"></script>
+QUOTEOR=<script src="https://shc0743.github.io/getLinkInput.js"></script>
+********/
+
 function findInput(name,succeed,error){try{
 eval(name+"=undefined")
 var path=location.href
