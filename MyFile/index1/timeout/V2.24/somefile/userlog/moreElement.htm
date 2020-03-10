@@ -28,7 +28,7 @@ cons.hidden=false
 page1.hidden=true
 }
 function exectioncode(){
-execd.disabled=true
+execode.disabled=true
 try{
 var out = eval(execode.value)
 cons.innerHTML=cons.innerHTML+"<br>Output&nbsp;"+out+"<br>"+'<button onclick="nextcode()">Next</button>'
@@ -42,7 +42,7 @@ err+
  }
 }
 function nextcode(){
-execd.disabled=false
+execode.disabled=false
 cons.innerHTML='Input <br><textarea id=execode cols=20 rows=1 onkeyup="if(this.value.indexOf(\'\\n\')!==-1) exectioncode()"></textarea><!--<button id=execd onclick="exectioncode()">Enter</button>--><br>Tool:<a href="javascript:location.reload()">location.reload</a>'
 }
 function checkexeout(){
