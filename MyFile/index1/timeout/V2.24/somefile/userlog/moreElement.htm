@@ -23,7 +23,7 @@ return retdata;
 }
 }
 function openConsole(){
-consi=cons.innerHTML
+//consi=cons.innerHTML
 cons.hidden=false
 page1.hidden=true
 }
@@ -43,7 +43,7 @@ err+
 }
 function nextcode(){
 execd.disabled=false
-cons.innerHTML=consi
+cons.innerHTML='Input <br><textarea id=execode cols=20 rows=1 onkeyup="if(this.value.indexOf(\'\\n\')!==-1) exectioncode()"></textarea><!--<button id=execd onclick="exectioncode()">Enter</button>--><br>Tool:<a href="javascript:location.reload()">location.reload</a>'
 }
 function checkexeout(){
 var o = document.getElementById("cons").innerHTML
