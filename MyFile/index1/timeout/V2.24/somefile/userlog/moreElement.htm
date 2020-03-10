@@ -23,6 +23,7 @@ return retdata;
 }
 }
 function openConsole(){
+consi=cons.innerHTML
 cons.hidden=false
 page1.hidden=true
 }
@@ -42,7 +43,7 @@ err+
 }
 function nextcode(){
 execd.disabled=false
-cons.innerHTML='Input &nbsp; <input id=execode><button onclick="exectioncode()" id="execd">Enter</button><br>Tool:<a href="javascript:location.reload()">location.reload</a>'
+cons.innerHTML=consi
 }
 function checkexeout(){
 var o = document.getElementById("cons").innerHTML
