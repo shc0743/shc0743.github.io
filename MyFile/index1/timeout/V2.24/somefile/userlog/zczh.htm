@@ -20,7 +20,7 @@
 function nownew(){
 var zh = localStorage.getItem('zyusername');
 var mm = localStorage.getItem('zypw');
-if(zh!==""||mm!==""){
+if((zh!==""&&zh!==null)||(mm!==""&&mm!==null)){
 wel.hidden=true
 ipw.hidden=false
 } else {
