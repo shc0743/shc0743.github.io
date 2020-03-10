@@ -8,11 +8,10 @@
 <a href="javascript:parent.location.reload()">reload(刷新)</a><br>
 </div>
 <div id=cons hidden>
-Input &nbsp; <input id=execode><button id=execd onclick="exectioncode()">Enter</button><br>Tool:<a href="javascript:location.reload()">location.reload</a>
+Input &nbsp; <textarea id=execode cols=20 rows=1 onkeyup="if(this.value.indexOf('\n')!==-1) exectioncode()"></textarea><button id=execd onclick="exectioncode()">Enter</button><br>Tool:<a href="javascript:location.reload()">location.reload</a>
 </div>
 
 <script>
-disableEval()
 function pageset(n,now){
 document.getElementById("page"+n).hidden=false
 document.getElementById("page"+now).hidden=true
@@ -33,10 +32,10 @@ try{
 var out = eval(execode.value)
 cons.innerHTML=cons.innerHTML+"<br>Output&nbsp;"+out+"<br>"+'<button onclick="nextcode()">Next</button>'
  }
-catch(SyntaxError){
+catch(err){
 cons.innerHTML=cons.innerHTML+
 "<br>Output&nbsp;"+
-SyntaxError+
+err+
 "<br>"+
 '<button onclick="nextcode()">Next</button>'
  }
