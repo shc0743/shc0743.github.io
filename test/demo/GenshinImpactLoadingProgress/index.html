@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="position:flxed;left:10px;top:10px;z-index:10;">
+        <button onclick="prog.value=0;cnt=0;intervalid=setInterval(F,100);">Again</button>
+    </div>
+
+    <script src="progress_2.js"></script>
+    <script>
+        var prog = new GenshinImpactLoadingProgressClass;
+        prog.show();
+
+        var cnt = 0;
+        var intervalid = setInterval(function F() {
+            if (++cnt > 100) return clearInterval(intervalid);
+            prog.value = cnt;
+        }, 100);
+    </script>
+</body>
+</html>
