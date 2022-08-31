@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="position:flxed;left:10px;top:10px;z-index:10;">
+    <div style="position:fixed;left:10px;top:10px;z-index:10;">
         <button onclick="prog.value=0;cnt=0;intervalid=setInterval(F,100);">Again</button>
     </div>
 
@@ -17,10 +17,11 @@
         prog.show();
 
         var cnt = 0;
-        var intervalid = setInterval(function F() {
+        function F() {
             if (++cnt > 100) return clearInterval(intervalid);
             prog.value = cnt;
-        }, 100);
+        }
+        var intervalid = setInterval(F, 100);
     </script>
 </body>
 </html>
