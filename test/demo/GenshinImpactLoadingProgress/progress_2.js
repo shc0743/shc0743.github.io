@@ -172,6 +172,24 @@
             this.redraw();
         }
 
+        toggle() {
+            return(this.getState().state.visible ? this.hide() : this.show());
+        }
+
+        getState() {
+            return {
+                state: {
+                    value: this.value,
+                    min: this.min,
+                    max: this.max,
+                    visible: (this.elem_root.style.display !== 'none'),
+                    visibility: (this.elem_root.style.display !== 'none') ?
+                        (this.elem_root.style.opacity == '1') ? 
+                            1 : 2 : 0,
+                }
+            };
+        }
+
         hide_and_destroy() {
             this.execute_hide({ password: password, destroy: true }); 
         }
