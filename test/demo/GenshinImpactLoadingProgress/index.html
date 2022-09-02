@@ -10,6 +10,15 @@
     <div style="position:fixed;left:10px;top:10px;z-index:10;">
         <button onclick="prog.value=0;cnt=0;intervalid=setInterval(F,100);">Again</button>
     </div>
+    <div style="position:fixed;right:10px;top:10px;z-index:10;">
+        <button onclick="prog.toggle();">Toggle</button>
+    </div>
+    <div style="position:fixed;left:10px;bottom:10px;z-index:10;">
+        <button onclick="prog.hide_and_destroy();">Hide and destroy</button>
+    </div>
+    <div style="position:fixed;right:10px;bottom:10px;z-index:10;">
+        <button onclick="prog.destroy();">Destroy</button>
+    </div>
 
     <script src="progress_2.js"></script>
     <script>
