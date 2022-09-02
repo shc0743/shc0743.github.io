@@ -1,5 +1,5 @@
 (function (_) {
-    var StringTable = {
+    const StringTable = {
         export_name: 'GenshinImpactLoadingProgressClass',
 
         0xC002: 'GenshinImpactLoadingProgressWrapperClass',
@@ -11,10 +11,10 @@
         0xE002: `Class is already defined, only one version of v1 and v2 can be selected.`,
         0xE003: `Invalid paramter`,
     };
-    var GenshinElements = {
+    let GenshinElements = {
         order: ['pyro', 'hydro', 'anemo', 'electro', 'dendro', 'cryo', 'geo'],
         color: { full: '#666666', empty: '#F6F6F6' },
-        size: 64,
+        // size: 64,
         source: 'https://www.iconfont.cn/collections/detail?cid=34264',
 
         pyro: '<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M724 458.67s-55.333-42.667-76-133.333c0 0-35.333 26-41.333 79.333 0 0-4.001 44.667 28.666 72.667 0 0 16 23.334 18 41.334 0 0-62-51.334-77.333-115.334 0 0-14.001-32.667 13.333-116.667 0 0-77.333 48-89.333 103.333 0 0-7.69 35.452 27.333 69.333 0 0-46.667-26.666-45.333-73.333 0 0-1.334-44 71.333-101.333 0 0 34-25.333 6.667-80.667 0 0-42-73.342-64-88.004 0 0 10 56-77 155 0 0-27 39-28 82 0 0-6 77 121 120 0 0 153 46 160 139 0 0 27 84-69 132 0 0-91 46-159-9 0 0-43.666-60.666 27.667-108.333 0 0-82-25.666-101 48.667 0 0-7.667 52.667 64.667 85 0 0 84 42.034 185 1.684S744.998 665.667 749.331 621c0 0 9-44-22-109 0 0 75 39.334 74 105.667 0 0 6.334 56.994-93.333 112.661S644.666 756.667 512 848.667c0 0-85-57.917-222-126.167 0 0-66.667-34.166-71.667-105.166 0 0-7-66.333 81.333-118.667 0 0-52.667 57.667-43.667 113 0 0 3.667 75.167 118.5 126.333 0 0-58.5-50.001-39.75-128.501 0 0 25.53-116.166 175.057-122.166 0 0-162.141-48.661-158.807-154.995 0 0-17 44.323-96 138.323 0 0-54 62.004-71 128.004 0 0-16 59.333 9 88.333 0 0 20 35.5 122.5 89 0 0 73 37 196.5 134.5 0 0 43.333-53.166 197.333-137.166 0 0 101.333-46 120-128.667 0.001 0.002 21.335-91.328-105.332-185.995z"></path><path d="M623.5 634c-3.5-75-66.5-97-66.5-97-118.5-36-150.5 61.5-150.5 61.5C507 553.5 545 626 545 626c28 42-5 86-5 86 82-26 83.5-78 83.5-78z"></path></svg>',
@@ -26,7 +26,9 @@
         geo: '<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 123S364 228 255 362c0 0 31 109 65 164 0 0 126.999-138 192-153 0 0 65 52 79 103 0 0-83 77-91 84 0 0 14 21 31 38 0 0 109-77 135-114 0 0-56.001-111-154-205 0 0-137 113-165 140 0 0 6.999-92 165-253 0 0 196 207 284 457 0 0 52-62.334 80-111 0 0-123-224-364-389z"></path><path d="M512 651s-65-52-79-103c0 0 83-77 91-84 0 0-14-21-31-38 0 0-109 77-135 114 0 0 56.001 111 154 205 0 0 137-113 165-140 0 0-6.999 92-165 253 0 0-196-207-284-457 0 0-52 62.334-80 111 0 0 123 224 364 389 0 0 148-105 257-239 0 0-31-109-65-164 0 0-126.999 138-192 153z"></path></svg>',
 
         createElement: function (svg, size, color = '#000000') {
-            if (typeof svg !== 'string' || typeof size !== 'number' || typeof color !== 'string') {
+            if (typeof svg !== 'string' ||
+                (typeof size !== 'number' && size != null) ||
+                (typeof color !== 'string' && color != null)) {
                 throw new TypeError(StringTable[0xE003]);
             }
             let el = document.createElement('span');
@@ -37,16 +39,29 @@
             }
             let svgs = el.querySelectorAll('svg');
             for (let i of svgs) {
-                i.style.width = i.style.height = size + 'px';
-                let paths = i.querySelectorAll('path');
-                for (let j of paths) {
-                    j.setAttribute('fill', color);
+                if (size) {
+                    el.style.width = el.style.height =
+                    i.style.width = i.style.height =
+                        size + 'px';
+                }
+                if (color) {
+                    let paths = i.querySelectorAll('path');
+                    for (let j of paths) {
+                        j.setAttribute('fill', color);
+                    }
                 }
             }
 
             return el;
         }
     };
+    const password = (function () {
+        return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        }); 
+    }());
 
     if (typeof (_[StringTable.export_name]) !== 'undefined') {
         throw new Error(StringTable[0xE002]);
@@ -84,7 +99,7 @@
             // for (let col of [GenshinElements.color.full, GenshinElements.color.empty])
             for (let i of GenshinElements.order) {
                 let svg = GenshinElements[i];
-                let el = GenshinElements.createElement(svg, GenshinElements.size,
+                let el = GenshinElements.createElement(svg, null,
                     GenshinElements.color.full);
                 this.elem_ch1F.append(el);
             }
@@ -129,11 +144,36 @@
 
         }
 
+        execute_hide(prop) {
+            if (typeof prop !== 'object' || prop.password !== password) {
+                throw new TypeError('Illegal invocation');
+            }
+
+            let timer = null;
+            let opacity = 1;
+            let validate = function (d) { return (d < 0) ? 0 : d; };
+            timer = setInterval(function (thisArg) {
+                thisArg.elem_root.style.opacity = validate(opacity -= 0.025);
+                if (opacity <= 0) {
+                    clearInterval(timer);
+                    thisArg.elem_root.style.display = 'none';
+
+                    if (prop.destroy) thisArg.destroy.call(thisArg);
+                }
+            }, 10, this);
+        }
+
         hide() {
-            this.elem_root.style.display = 'none';
+            this.execute_hide({ password: password });
         }
         show() {
+            this.elem_root.style.opacity = 1;
             this.elem_root.style.display = '';
+            this.redraw();
+        }
+
+        hide_and_destroy() {
+            this.execute_hide({ password: password, destroy: true }); 
         }
 
         redraw() {
@@ -147,8 +187,6 @@
         }
 
         destroy() {
-            this.elem_ch1E.remove();
-            this.elem_ch1F.remove();
             this.elem_root.remove();
         }
 
@@ -180,6 +218,7 @@
 
         --background: #FFFFFF;
         --linelen: ${GenshinElements.size}px;
+        --svgsize: 6vw;
     }
     .${StringTable[0xC003]} {
         display: flex;
@@ -199,6 +238,11 @@
         height: 100%;
         background: var(--background);
         opacity: 0.9;
+    }
+    .${StringTable[0xC003]} span,
+    .${StringTable[0xC003]} svg {
+        width: var(--svgsize);
+        height: var(--svgsize);
     }
     `);
 
