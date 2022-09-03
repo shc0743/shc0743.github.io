@@ -198,7 +198,7 @@
             let rect = this.elem_ch1F.getBoundingClientRect();
             let min = rect.x, max = rect.x + rect.width;
             let area = max - min;
-            let percent = this.value / (this.max - this.min);
+            let percent = (this.value - this.min) / (this.max - this.min);
             // let container_w = this.elem_root.clientWidth;
             let n = percent * area + min;
             this.elem_bkdp.style.left = n + 'px';
