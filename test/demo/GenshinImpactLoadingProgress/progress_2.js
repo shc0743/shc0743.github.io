@@ -142,6 +142,8 @@
                 enumerable: true
             });
 
+            this.elem_root.style.display = 'none';
+
 
         }
 
