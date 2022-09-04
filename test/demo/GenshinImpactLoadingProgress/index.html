@@ -23,11 +23,17 @@
     <script src="progress_2.js"></script>
     <script>
         var prog = new GenshinImpactLoadingProgressClass;
+        prog.setRange(50, 150);
         prog.show();
 
-        var cnt = 0;
+        var cnt = 50;
+        var hg = prog.getHalfGeoValue();
         function F() {
-            if (++cnt > 100) return clearInterval(intervalid);
+            if (cnt++ >= hg) {
+                prog.value = hg;
+                setTimeout("prog.value=150", 3000);
+                return clearInterval(intervalid);
+            }
             prog.value = cnt;
         }
         var intervalid = setInterval(F, 100);
