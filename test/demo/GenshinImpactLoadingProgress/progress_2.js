@@ -10,6 +10,7 @@
 
         0xE002: `Class is already defined, only one version of v1 and v2 can be selected.`,
         0xE003: `Invalid paramter`,
+        0xE005: `Internal Error`,
     };
     let GenshinElements = {
         order: ['pyro', 'hydro', 'anemo', 'electro', 'dendro', 'cryo', 'geo'],
@@ -176,6 +177,21 @@
             return(this.getState().state.visible ? this.hide() : this.show());
         }
 
+        getHalfGeoValue() {
+            let rect = this.elem_ch1F.lastElementChild;
+            if (rect) rect = rect.getBoundingClientRect();
+            else throw new Error(StringTable[0xE005]);
+            let px = rect.x + (rect.width / 2);
+
+            let rc2 = this.elem_ch1F.getBoundingClientRect();
+            let min = rc2.x, max = rc2.x + rc2.width;
+            let area = max - min;
+            let percent = (px - min) / area;
+            let value = percent * (this.max - this.min) + this.min;
+
+            return value;
+        }
+
         getState() {
             return {
                 state: {
@@ -188,6 +204,16 @@
                             1 : 2 : 0,
                 }
             };
+        }
+
+        setRange(min, max) {
+            const n = 'number';
+            if (typeof (min) !== n || typeof (max) !== n || min > max) {
+                throw new TypeError(StringTable[0xE003]);
+            }
+            this.__min__ = min;
+            this.__max__ = max;
+            this.redraw();
         }
 
         hide_and_destroy() {
