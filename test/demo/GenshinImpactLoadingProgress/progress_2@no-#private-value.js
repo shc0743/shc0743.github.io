@@ -1,5 +1,5 @@
 (function (_) {
-    const version = 2.2;
+    const version = 2.1;
     const StringTable = {
         export_name: 'GenshinImpactLoadingProgressClass',
 
@@ -116,57 +116,61 @@
 
             this.__elem_root__.style.display = 'none';
 
+            this.__value = 0;
+            this.__min = 0;
+            this.__max = 100;
+
 
         }
 
-        __elem_root__ = null;
-        __elem_ch1F__ = null;
-        __elem_bkdp__ = null;
-        __elem_evft__ = null;
+        // __elem_root__ = null;
+        // __elem_ch1F__ = null;
+        // __elem_bkdp__ = null;
+        // __elem_evft__ = null;
 
-        #value = 0;
-        #min = 0;
-        #max = 100;
+        // __value = 0;
+        // __min = 0;
+        // __max = 100;
 
         get value() {
-            return this.#value;
+            return this.__value;
         }
         get min() {
-            return this.#min;
+            return this.__min;
         }
         get max() {
-            return this.#max;
+            return this.__max;
         }
 
         set min(newValue) {
             if (
                 typeof newValue !== 'number' ||
-                newValue > this.#max
+                newValue > this.__max
             ) throw new TypeError(StringTable[0xE003]);
             if (isNaN(newValue)) throw new TypeError(StringTable[0xE007]);
-            this.#min = newValue;
+            this.__min = newValue;
             this.redraw();
         }
         set max(newValue) {
             if (
                 typeof newValue !== 'number' ||
-                newValue < this.#min
+                newValue < this.__min
             ) throw new TypeError(StringTable[0xE003]);
             if (isNaN(newValue)) throw new TypeError(StringTable[0xE007]);
-            this.#max = newValue;
+            this.__max = newValue;
             this.redraw();
         }
         set value(newValue) {
             if (
                 typeof newValue !== 'number' ||
-                newValue < this.#min || newValue > this.#max
+                newValue < this.__min || newValue > this.__max
             ) throw new TypeError(StringTable[0xE003]);
             if (isNaN(newValue)) throw new TypeError(StringTable[0xE007]);
-            this.#value = newValue;
+            this.__value = newValue;
             this.redraw();
         }
 
-        #execute_hide(prop) {
+        execute_hide(prop) {
             if (typeof prop !== 'object' || prop.password !== password) {
                 throw new TypeError('Illegal invocation');
             }
@@ -186,7 +190,7 @@
         }
 
         hide() {
-            this.#execute_hide({ password: password });
+            this.execute_hide({ password: password });
         }
         show() {
             this.__elem_root__.style.opacity = 1;
@@ -231,13 +235,13 @@
             if (isNaN (min) || isNaN (max) || min > max) {
                 throw new TypeError(StringTable[0xE003]);
             }
-            this.#min = Number(min);
-            this.#max = Number(max);
+            this.__min = Number(min);
+            this.__max = Number(max);
             this.redraw();
         }
 
         hide_and_destroy() {
-            this.#execute_hide({ password: password, destroy: true }); 
+            this.execute_hide({ password: password, destroy: true }); 
         }
 
         on(ev, h, p) {
@@ -268,7 +272,7 @@
 
     }
 
-    let ProgressProxy = new(Proxy)(Progress, {
+    let ProgressProxy = new (Proxy)(Progress, {
         get(target, prop, receiver) {
             if (prop === 'version') return version;
 
@@ -280,7 +284,7 @@
             return false;
         },
     })
-    
+
 
     defprop(_, StringTable.export_name, {
         get() { return ProgressProxy },
@@ -288,6 +292,7 @@
         enumerable: true,
         configurable: true
     });
+
 
     addCSS(`
     .${StringTable[0xC002]} {
