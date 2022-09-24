@@ -1,3 +1,7 @@
+/*
+This is deprecated. It just supports for old browsers. Do not use it in new projects.
+*/
+
 (function (_) {
     const version = 2.1;
     const StringTable = {

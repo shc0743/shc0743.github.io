@@ -328,7 +328,7 @@
     }
     .${StringTable[0xC002]} .${StringTable[0xC003]} span {
         width: var(--svgsize);
-        aspect-ratio: 1;
+        /*aspect-ratio: 1;*/
         padding: 0;
     }
     .${StringTable[0xC002]} .${StringTable[0xC003]} svg {
@@ -339,6 +339,8 @@
         position: absolute;
         width: 100%;
         height: 100%;
+        left: 0;
+        top: 0;
         background: var(--background);
         opacity: 0;
     }
