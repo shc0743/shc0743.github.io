@@ -175,10 +175,10 @@
             let opacity = 1;
             let validate = function (d) { return (d < 0) ? 0 : d; };
             timer = setInterval(function (thisArg) {
-                thisArg.elem_root.style.opacity = validate(opacity -= 0.025);
+                thisArg.__elem_root__.style.opacity = validate(opacity -= 0.025);
                 if (opacity <= 0) {
                     clearInterval(timer);
-                    thisArg.elem_root.style.display = 'none';
+                    thisArg.__elem_root__.style.display = 'none';
 
                     if (prop.destroy) thisArg.destroy.call(thisArg);
                 }
@@ -279,12 +279,23 @@
                 ` ${prop} to value ${newValue} at receiver ${receiver}`);
             return false;
         },
+        defineProperty(target, prop, attr) {
+            throw new TypeError(`Trying to defineProperty constant target ${target}` +
+                ` property ${prop} attr ${attr}`);
+            return false;
+        },
+        deleteProperty(target, p) {
+            throw new TypeError(`Trying to delete constant target ${target}` +
+                ` property ${p}`);
+            return false;
+        },
     })
     
 
     defprop(_, StringTable.export_name, {
         get() { return ProgressProxy },
-        set(__) { throw new TypeError(StringTable[8] + String(__) + StringTable[9]) },
+        set(__) { throw new TypeError(`Trying to set constant target ` +
+                `${ProgressProxy} to value ${__}`) },
         enumerable: true,
         configurable: true
     });
@@ -315,6 +326,8 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+
+        width: 100%;
     }
     .${StringTable[0xC002]} .${StringTable[0xC003]} > span {
         display: inline-block;

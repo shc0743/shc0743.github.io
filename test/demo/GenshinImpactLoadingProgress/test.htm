@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact Loading Progress Demo</title>
+</head>
+<body>
+    
+    <p style="/*white-space:pre;*/-z-no-vsc-warning:true;">
+        This is some content.<br>
+        This is some content.<br>
+        This is some content.<br>
+        This is some content.<br>
+        This is some content.<br>
+        Genshin Impact Loading Progress Demo Page is here.<br>
+        Press arrow keys to change size (Ctrl: ±100, Shift: ±10, Alt: ±0.1), or click the progress to change it's parent element.<br>
+        Genshin Impact Loading Progress is a JavaScript library to emulate Genshin Impact Loading Progress.<br>
+        To learn more, <a href="javascript:void(alert('Developing'))">Go here</a>.
+    </p>
+
+    <div id="half-screen-content" title="Click to change parent">
+        <b>This is an half-screen content.</b>
+    </div>
+    
+    <div id="info">
+        <div class="left top" title="Scroll wheel to change, click to set directly">
+            <span>Min: </span>
+            <span id="imin">0</span>
+        </div>
+        <div class="top" title="Scroll wheel to change, click to stop or restart">
+            <span>Value: </span>
+            <span id="ivalue">0</span>
+        </div>
+        <div class="right top" title="Scroll wheel to change, click to set directly">
+            <span>Max: </span>
+            <span id="imax">0</span>
+        </div>
+        <div class="bottom" title="Your mouse events, click to go to half geo">
+            <span>Mouse: </span>
+            <span id="imouse">null</span>
+        </div>
+        <div class="right bottom" title="click to toggle">
+            <span id="ihos">Hide/Show</span>
+        </div>
+    </div>
+
+    <style>
+        #half-screen-content {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            min-width: 50%;
+            min-height: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #ccc;
+        }
+        /* #info {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        } */
+        #info > * {
+            position: fixed;
+            left: 50%;
+            /* right: 50%; */
+            top: 50%;
+            /* bottom: 50%; */
+            transform: translate(var(--translateX), var(--translateY));
+
+            z-index: 20002;
+
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 3px;
+            cursor: pointer;
+
+            --translateX: -50%;
+            --translateY: -50%;
+        }
+        #info .left {
+            left: 10px;
+            --translateX: 0;
+        }
+        #info .right {
+            left: unset;
+            right: 10px;
+            --translateX: 0;
+        }
+        #info .top {
+            top: 10px;
+            --translateY: 0;
+        }
+        #info .bottom {
+            top: unset;
+            bottom: 10px;
+            --translateY: 0;
+        }
+        #info .red {
+            color: red;
+        }
+    </style>
+
+    <script type="Do-Not-Execute">
+        window.onerror = function(e,a,b,c,d)  {alert((e)+a+b+c+d)}
+    </script>
+    <script>
+        'use strict';
+        try {
+            window.eval(`
+            class _MyTest {
+                #a = 'progress_2.js';
+                b () {
+                    document.write('<script src="' + this.#a + '"><' + '/script>')
+                }
+            }
+
+            new(_MyTest)().b();
+            `);
+        }
+        catch (error) {
+            console.warn("[Warning] Browser doesn't support #private class members,", error, " using another version without this...");
+            document.write('<script src="progress_2@no-%23private-value.js"' + '><' + '/script>')
+        }
+    </script>
+    <script>
+        var ivalue = document.querySelector('#info #ivalue');
+        var imin = document.querySelector('#info #imin');
+        var imax = document.querySelector('#info #imax');
+        var imouse = document.querySelector('#info #imouse');
+        var hsc = document.getElementById('half-screen-content');
+
+        var _prog = new GenshinImpactLoadingProgressClass(hsc);
+        var prog = new Proxy(_prog, {
+            get(target, attr, receiver) {
+                if (typeof target[attr] === "function")
+                    return target[attr].bind(target);
+                    // return Reflect.get(...arguments).bind(receiver);
+                return target[attr];
+                // return Reflect.get(...arguments);
+            },
+            set(target, attr, newValue, receiver) {
+                let _Myerr = null;
+                try {
+                    target[attr] = newValue;
+                }
+                catch (err) {
+                    _Myerr = err;
+                }
+
+                if (attr == 'value') {
+                    if (_Myerr) {
+                        ivalue.classList.add('red');
+                        throw _Myerr;
+                    }
+                    else ivalue.classList.remove('red');
+                    ivalue.innerText = newValue;
+                }
+                if (attr == 'min') {
+                    if (_Myerr) {
+                        imin.classList.add('red');
+                        throw _Myerr;
+                    }
+                    else imin.classList.remove('red');
+                    imin.innerText = newValue;
+                }
+                if (attr == 'max') {
+                    if (_Myerr) {
+                        imax.classList.add('red');
+                        throw _Myerr;
+                    }
+                    else imax.classList.remove('red');
+                    imax.innerText = newValue;
+                }
+
+                return true;
+            }
+        })
+        prog.setRange(-100, 100);
+        prog.value = prog.value;
+        prog.min = prog.min;
+        prog.max = prog.max;
+        // prog.moveTo(document.body)
+        prog.show();
+
+        prog.on('mousemove', function (ev) {
+            document.querySelector('#info #imouse').innerText =
+                `(${ev.x}, ${ev.y})`;
+        });
+        prog.on('click', function () {
+            if (hsc.childElementCount <= 1) prog.moveTo(hsc);
+            else prog.moveTo(document.body);
+
+            let bounded = function () {
+                document.querySelector('#info #imouse').classList.toggle('red');
+            }
+            bounded();
+            setTimeout(bounded, 1000);
+
+            prog.redraw();
+        });
+
+        ivalue.parentElement.onwheel = function (ev) {
+            prog.value += (ev.deltaY < 0) ? 1 : -1;
+        }
+        ivalue.parentElement.onclick = function () {
+            if (intervalid) {
+                clearInterval(intervalid);
+                intervalid = null;
+            } else {
+                if (cnt >= prog.max) cnt = prog.min;
+                intervalid = setInterval(interDo, 100);
+            }
+        }
+
+        imin.parentElement.onwheel = function (ev) {
+            prog.min += (ev.deltaY < 0) ? 1 : -1;
+        }
+        imax.parentElement.onwheel = function (ev) {
+            prog.max += (ev.deltaY < 0) ? 1 : -1;
+        }
+        imin.parentElement.onclick = function (ev) {
+            prog.min = parseInt(prompt('Set new value: ',prog.min));
+        }
+        imax.parentElement.onclick = function (ev) {
+            prog.max = parseInt(prompt('Set new value: ',prog.max));
+        }
+        imouse.parentElement.onclick = function (ev) {
+            prog.value = prog.getHalfGeoValue()
+        }
+
+        ihos.parentElement.onclick = function (ev) {
+            prog.getState().state.visible ?
+            prog.hide() : prog.show();
+        }
+
+        var kd_data = {
+            'Up': [0, -1],
+            'Down': [0, 1],
+            'Left': [-1, 0],
+            'Right': [1, 0],
+
+            scale: 5
+        };
+
+        document.addEventListener('keydown', function (ev) {
+            if (ev.key.startsWith('Arrow')) {
+                let newStr = ev.key.replace('Arrow', '');
+                let a = kd_data[newStr];
+                if (a) {
+                    let scale = kd_data.scale;
+                    if (ev.ctrlKey) scale *= 100;
+                    if (ev.shiftKey) scale *= 10;
+                    if (ev.altKey) scale *= 0.1;
+
+                    let b = a[0] * scale, c = a[1] * scale;
+                    hsc.style.width = parseFloat(getComputedStyle(hsc).width.replace('px','')) + b + 'px';
+                    hsc.style.height = parseFloat(getComputedStyle(hsc).height.replace('px','')) + c + 'px';
+                }
+                prog.redraw()
+            }
+        });
+        window.addEventListener('resize', (() => prog.redraw()));
+
+        var cnt = prog.min;
+        function interDo() {
+            if (++cnt > prog.max) {
+                clearInterval(intervalid);
+                return intervalid = null;
+            }
+            prog.value = cnt;
+        };
+        var intervalid = setInterval(interDo, 100);
+    </script>
+</body>
+</html>
