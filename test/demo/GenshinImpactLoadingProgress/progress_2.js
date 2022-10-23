@@ -369,4 +369,4 @@
         (document.head || document.documentElement).append(c);
     }
     
-}((typeof (exports) === "undefined" ? window : exports) || window));
+}((typeof (globalThis) === "undefined" ? window : globalThis) || window));

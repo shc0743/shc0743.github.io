@@ -133,6 +133,7 @@
         }
     </script>
     <script>
+    (function () {
         var ivalue = document.querySelector('#info #ivalue');
         var imin = document.querySelector('#info #imin');
         var imax = document.querySelector('#info #imax');
@@ -280,6 +281,7 @@
             prog.value = cnt;
         };
         var intervalid = setInterval(interDo, 100);
+    })();
     </script>
 </body>
 </html>
