@@ -251,6 +251,10 @@
             return element.append(this.__elem_root__);
         }
 
+        setSvgSize(size) {
+            this.__elem_root__.style.setProperty(`--svgsize`, ` ${size}px`);
+        }
+
         redraw() {
             let rect = this.__elem_ch1F__.firstElementChild.getBoundingClientRect();
             let min = rect.x, max = rect.x + (rect.width * this.__elem_ch1F__.childElementCount);
